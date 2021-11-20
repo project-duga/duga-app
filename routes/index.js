@@ -6,9 +6,11 @@ const Api = require("../apis/api")
 
 /* GET home page. */
 router.get('/', (req, res)=> {
-  User.find().then((users)=>
+  User.find()
+  .then((users)=>
   res.render('index', { title: 'Express', users})
   )
+
 });
 
 /* GET from API */
@@ -17,5 +19,6 @@ router.get('/api', (req, res)=> {
   res.render('index', { title: 'Express', users: entity})
 );
 });
+
 
 module.exports = router;

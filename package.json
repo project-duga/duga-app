@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "dev": "nodemon ./bin/www"
+    "dev": "nodemon --ext html,js,css,hbs ./bin/www"
   },
   "dependencies": {
     "axios": "^0.21",
@@ -17,10 +17,11 @@
     "express-session": "^1",
     "hbs": "^4",
     "http-errors": "^1",
-    "mongoose": "^5",
+    "mongoose": "^6",
     "morgan": "^1",
     "multer": "^1",
     "multer-storage-cloudinary": "^4",
+    "rebuild": "^0.1.2",
     "serve-favicon": "^2"
   },
   "devDependencies": {

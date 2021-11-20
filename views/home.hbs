@@ -1,0 +1,17 @@
+<p> Hello {{title}} welcome to Duga!</p>
+
+<p>Think about an artist you like to create a playlist of 5 songs of related music. </p>
+<br>
+
+<form action="/home/{{_id}}" method="post">
+
+        
+        <label for="artist"></label>
+        <input required type="text" name="artist" placeholder="Artist Name"/>
+        <br>
+        <button type="submit">Search</button>
+
+        {{#each test}}
+        <h1>{{_id}}</h1>
+        {{/each}}
+</form>
