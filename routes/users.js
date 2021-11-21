@@ -26,7 +26,7 @@ router.route("/signup")
   const hashPwd = bcrypt.hashSync(password, salt)
   
   const newUser = await User.create({name, email, password: hashPwd})
-  res.render("discover",{user: newUser})
+  res.redirect("discover",{user: newUser})
   })
 
 
@@ -43,7 +43,7 @@ router.route("/signup")
   if(!loggedinUser) {res.render("login-form", {error:{type: "USER_ERR", msg: "User does not exist"}}) }
 
   const pswIsCorrect = bcrypt.compareSync(password, loggedinUser.password)
-
+  
 if(pswIsCorrect){
   req.session.loggedinUser = loggedinUser
   res.redirect("discover")
