@@ -17,8 +17,8 @@ router.route("/signup")
     res.render("signup-form", { name, email, error:{type: "CRED_ERR", msg: "Missing credentials"}})
   }
   
-  const test = await User.findOne({email})
-  if(test){
+  const user = await User.findOne({email})
+  if(user){
     res.render("signup-form", { name, email, error:{type: "USR_ERR", msg: "Email exists"}})
   }
   
@@ -26,7 +26,7 @@ router.route("/signup")
   const hashPwd = bcrypt.hashSync(password, salt)
   
   const newUser = await User.create({name, email, password: hashPwd})
-  res.render("discover",{test: newUser})
+  res.render("discover",{user: newUser})
   })
 
 
@@ -46,7 +46,7 @@ router.route("/signup")
 
 if(pswIsCorrect){
   req.session.loggedinUser = loggedinUser
-  res.render("discover")
+  res.redirect("discover")
 }else{
   res.render("login-form", {error:{type: "PWD_ERR", msg: "Password incorrect"}})
 }
