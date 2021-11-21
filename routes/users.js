@@ -26,7 +26,7 @@ router.route("/signup")
   const hashPwd = bcrypt.hashSync(password, salt)
   
   const newUser = await User.create({name, email, password: hashPwd})
-  res.render("home",{test: newUser})
+  res.render("discover",{test: newUser})
   })
 
 
@@ -46,7 +46,7 @@ router.route("/signup")
 
 if(pswIsCorrect){
   req.session.loggedinUser = loggedinUser
-  res.render("home")
+  res.render("discover")
 }else{
   res.render("login-form", {error:{type: "PWD_ERR", msg: "Password incorrect"}})
 }
@@ -61,11 +61,17 @@ router.get('/logout', (req, res) => {
 	});
 });
 
-// home 
+// Discover 
 
-router.route("/home")
+router.route("/discover")
 .get((req, res) => {
-  res.render('home');
+  res.render('discover');
+})
+
+//profile
+router.route("/profile")
+.get((req, res) => {
+  res.render('profile');
 })
 
 

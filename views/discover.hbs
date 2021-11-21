@@ -1,9 +1,9 @@
-<p> Hello {{title}} welcome to Duga!</p>
+<p> Hello {{name}} welcome to Duga!</p>
 
 <p>Think about an artist you like to create a playlist of 5 songs of related music. </p>
 <br>
 
-<form action="/home/{{_id}}" method="post">
+<form action="/discover/{{_id}}" method="post">
 
         
         <label for="artist"></label>
@@ -15,3 +15,8 @@
         <h1>{{_id}}</h1>
         {{/each}}
 </form>
+
+<a href="/users/discover">Discover</a>
+<br>
+<a href="/users/profile">Profile</a>
+
