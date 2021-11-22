@@ -1,6 +1,6 @@
 const axios = require("axios");
 
-/* class Api {
+class Api {
   constructor(baseURL) { //baseUrl could be overwritten in the route that uses the API
     this.baseURL = baseURL
     this.api = axios.create(
@@ -16,26 +16,26 @@ const axios = require("axios");
   deleteOne = (id)=> this.api.delete(`/${id}`)
   updateOne = (id)=> this.api.put(`/${id}`)
   // etc...
-} */
+}
 
 
 
-const SpotifyWebApi = require("spotify-web-api-node");
-const spotifyApi = new SpotifyWebApi({
-    clientId: process.env.CLIENT_ID,
-    clientSecret: process.env.CLIENT_SECRET,
-});
+// const SpotifyWebApi = require("spotify-web-api-node");
+// const spotifyApi = new SpotifyWebApi({
+//     clientId: process.env.CLIENT_ID,
+//     clientSecret: process.env.CLIENT_SECRET,
+// });
 
-// Retrieve an access token
-spotifyApi
-    .clientCredentialsGrant()
-    .then((data) => spotifyApi.setAccessToken(data.body["access_token"]))
-    .catch((error) =>
-        console.log(
-            "Something went wrong when retrieving an access token",
-            error
-        )
-    );
+// // Retrieve an access token
+// spotifyApi
+//     .clientCredentialsGrant()
+//     .then((data) => spotifyApi.setAccessToken(data.body["access_token"]))
+//     .catch((error) =>
+//         console.log(
+//             "Something went wrong when retrieving an access token",
+//             error
+//         )
+//     );
 
 
 module.exports = spotifyApi;
