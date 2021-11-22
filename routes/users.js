@@ -98,7 +98,7 @@ router.route("/discover")
 .get(isLoggedIn, (req, res) => {
   const name = req.session.loggedinUser.name;
   // const name = req.session.name;
-  res.render("discover");
+  res.render("discover", {name});
   // .post(async (req, res) => {
 
   // })
