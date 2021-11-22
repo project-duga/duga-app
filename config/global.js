@@ -40,12 +40,12 @@ module.exports = (app) => {
 		session({
 			secret: 'Globtrotters-secret',
 			resave: false,
-			saveUninitialized: true,
+			saveUninitialized: false,
 			cookie: {
 				maxAge: 24 * 60 * 60 * 1000
 			},
 			store: MongoStore.create({
-				mongoUrl: `${process.env.MONGODB_URI}`
+				mongoUrl: `${process.env.MONGODB_URL}`
 			})
 		})
 	);
