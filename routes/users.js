@@ -97,7 +97,7 @@ router.get("/logout", (req, res) => {
 router.route("/discover")
 .get(isLoggedIn, (req, res) => {
   const name = req.session.loggedinUser.name;
-  // const name = req.session.name;
+  
   res.render("discover", {name});
   // .post(async (req, res) => {
 
@@ -107,7 +107,9 @@ router.route("/discover")
 //Profile
 router.route("/profile")
 .get(isLoggedIn,(req, res) => {
-  res.render("profile");
+  const name = req.session.loggedinUser.name;
+  const email = req.session.loggedinUser.email;
+  res.render("profile", {name,email});
 });
 
 //Confirm Artist
