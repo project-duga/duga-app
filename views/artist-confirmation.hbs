@@ -9,3 +9,10 @@
     </ul>
 </div>
 {{> navbar}}
+<div>
+    {{#each artists}}
+        <div>
+            <a href="/recomentation/{{this.id}}">{{this.name}}</a>
+        </div>
+    {{/each}}
+</div>

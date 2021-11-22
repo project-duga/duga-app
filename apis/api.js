@@ -1,4 +1,5 @@
 const axios = require("axios");
+
 class Api {
   constructor(baseURL) { //baseUrl could be overwritten in the route that uses the API
     this.baseURL = baseURL
@@ -7,6 +8,7 @@ class Api {
         baseURL: process.env.API_URL || this.baseURL
       }
     )
+    
   }
   // CHANGE THE PATHS ACCORIDNG TO API DOCUEMNTATION
   getAll = () => this.api.get("/")
@@ -17,6 +19,6 @@ class Api {
   // etc...
 }
 
+
+
 module.exports = new Api;
-
-

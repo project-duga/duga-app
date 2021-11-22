@@ -17,6 +17,8 @@ var app = express();
 
 // Register partials
 hbs.registerPartials(path.join(__dirname, "/views/partials"));
+//require the pakage spotify-web-api-node
+const SpotifyWebApi = require('spotify-web-api-node');
 
 
 // Functional curling style of loading configuration
