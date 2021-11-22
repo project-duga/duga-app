@@ -8,10 +8,26 @@ const isNotLoggedIn = require("../middleware/isNotLoggedIn");
 
 /* SignUp Users ( create users) */
 
-router
-  .route("/signup")
-  .get((req, res) => {
-    res.render("signup-form");
+router.route("/signup")
+.get((req, res) => {
+  res.render('signup-form');
+})
+.post( async (req, res)=>{
+  const {name,email, password} = req.body
+  if(!name || !email || !password){
+    res.render("signup-form", { name, email, error:{type: "CRED_ERR", msg: "Missing credentials"}})
+  }
+  
+  const user = await User.findOne({email})
+  if(user){
+    res.render("signup-form", { name, email, error:{type: "USR_ERR", msg: "Email exists"}})
+  }
+  
+  const salt = bcrypt.genSaltSync(5)
+  const hashPwd = bcrypt.hashSync(password, salt)
+  
+  const newUser = await User.create({name, email, password: hashPwd})
+  res.rediresct("/discover")
   })
   .post(async (req, res) => {
     try {
