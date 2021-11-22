@@ -11,6 +11,8 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 
+//require the pakage spotify-web-api-node
+const SpotifyWebApi = require('spotify-web-api-node');
 
 
 // Functional curling style of loading configuration

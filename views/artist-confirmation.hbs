@@ -1,8 +1,7 @@
 <div>
     {{#each artists}}
-        <ul>
-            <li>{{this.name}}</li>
-        </ul>
-
+        <div>
+            <a href="/recomentation/{{this.id}}">{{this.name}}</a>
+        </div>
     {{/each}}
 </div>
