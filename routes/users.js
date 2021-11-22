@@ -26,7 +26,7 @@ router.route("/signup")
   const hashPwd = bcrypt.hashSync(password, salt)
   
   const newUser = await User.create({name, email, password: hashPwd})
-  res.redirect("discover",{user: newUser})
+  res.rediresct("/discover")
   })
 
 
