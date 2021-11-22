@@ -4,7 +4,7 @@ var router = express.Router();
 const User = require("../models/User.model")
 const Api = require("../apis/api")
 
-/* GET home page. */
+/* GET discover page. */
 router.get('/', (req, res)=> {
   User.find()
   .then((users)=>

@@ -40,7 +40,7 @@ module.exports = (app) => {
 		session({
 			secret: 'Globtrotters-secret',
 			resave: false,
-			saveUninitialized: true,
+			saveUninitialized: false,
 			cookie: {
 				maxAge: 24 * 60 * 60 * 1000
 			},
