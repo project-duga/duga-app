@@ -1,19 +1,17 @@
-<h1> Welcome to Duga</h1>
-
-<h2> Ready to discober new songs?</h2>
-
-<form action="/users/login" method="post">
-
-    
-        <label for="email">Email:</label>
-        <input required type="email" name="email" placeholder="email@gmail.com">
-
-        <label for="password">Password:</label>
-        <input required type="password" name="password"/>
-
+<div>
+        <h1>Welcome Back</h1>
+        <form action="/users/login" method="post">
+        <label for="email"></label>
+        <input required type="email" name="email" placeholder="Email Address" class="form-fields">
+        <p>
+                <label for="password"></label>
+                <input required type="password" name="password" autocomplete="current-password" placeholder="Password" class="form-fields" id="id_password">
+                <i class="bi bi-eye-slash" id="togglePassword" onclick="showPass()"></i>
+        </p>
         <button type="submit">Login</button>
-
-</form>
-
-<h3>Still not a Member?</h3>
-<a href="/users/signup">Create an account Now!</a>
+        </form>
+        
+</div>
+<div class="tagline">
+        <p>Don’t have an account? <a href="/users/signup">Sign Up</a></p>
+</div>

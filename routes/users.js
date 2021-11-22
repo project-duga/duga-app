@@ -68,7 +68,77 @@ router.route("/discover")
   res.render('discover');
 })
 
-//profile
+// Playlist
+
+router.route("/playlist")
+.get((req, res) =>{ res.render("playlist")})
+.post(async (req, res)=>{
+  const {email, password} = req.body
+  if(!email || !password){res.render("playlist", {error:{type: "CRED_ERR", msg: "Missing credentials"}}) }
+
+  const loggedinUser = await User.findOne({email})
+  if(!loggedinUser) {res.render("playlist", {error:{type: "USER_ERR", msg: "User does not exist"}}) }
+
+  const pswIsCorrect = bcrypt.compareSync(password, loggedinUser.password)
+})
+
+// Swiping
+
+router.route("/swipe")
+.get((req, res) =>{ res.render("swiping")})
+.post(async (req, res)=>{
+  const {email, password} = req.body
+  if(!email || !password){res.render("swiping", {error:{type: "CRED_ERR", msg: "Missing credentials"}}) }
+
+  const loggedinUser = await User.findOne({email})
+  if(!loggedinUser) {res.render("swiping", {error:{type: "USER_ERR", msg: "User does not exist"}}) }
+
+  const pswIsCorrect = bcrypt.compareSync(password, loggedinUser.password)
+})
+
+// Create list
+
+router.route("/create")
+.get((req, res) =>{ res.render("create-list")})
+.post(async (req, res)=>{
+  const {email, password} = req.body
+  if(!email || !password){res.render("create-list", {error:{type: "CRED_ERR", msg: "Missing credentials"}}) }
+
+  const loggedinUser = await User.findOne({email})
+  if(!loggedinUser) {res.render("create-list", {error:{type: "USER_ERR", msg: "User does not exist"}}) }
+
+  const pswIsCorrect = bcrypt.compareSync(password, loggedinUser.password)
+})
+
+// Splash
+
+router.route("/splash")
+.get((req, res) =>{ res.render("splash")})
+.post(async (req, res)=>{
+  const {email, password} = req.body
+  if(!email || !password){res.render("splash", {error:{type: "CRED_ERR", msg: "Missing credentials"}}) }
+
+  const loggedinUser = await User.findOne({email})
+  if(!loggedinUser) {res.render("splash", {error:{type: "USER_ERR", msg: "User does not exist"}}) }
+
+  const pswIsCorrect = bcrypt.compareSync(password, loggedinUser.password)
+})
+
+// Artist confirmation
+
+router.route("/confirm")
+.get((req, res) =>{ res.render("artist-confirmation")})
+.post(async (req, res)=>{
+  const {email, password} = req.body
+  if(!email || !password){res.render("artist-confirmation", {error:{type: "CRED_ERR", msg: "Missing credentials"}}) }
+
+  const loggedinUser = await User.findOne({email})
+  if(!loggedinUser) {res.render("artist-confirmation", {error:{type: "USER_ERR", msg: "User does not exist"}}) }
+
+  const pswIsCorrect = bcrypt.compareSync(password, loggedinUser.password)
+})
+
+// Profile
 router.route("/profile")
 .get((req, res) => {
   res.render('profile');

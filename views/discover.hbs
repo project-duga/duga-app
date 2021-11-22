@@ -1,20 +1,16 @@
-<p> Hello {{user.name}} welcome to Duga!</p>
+<div class="centered-block">
+        <img src="/images/discover.png" class="discover-hero">
 
-<p>Think about an artist you like to create a playlist of 5 songs of related music. </p>
-<br>
+        <h2>Discover New Music</h2>
+        <p>Just type any artist you like and we will give you a list of tunes we think you may like</p>
+        <form action="/discover/{{_id}}" method="post">
+                <label for="artist"></label>
+                <input required type="text" name="artist" placeholder="Choose an artist you like" class="form-fields"/>
+                <br>
+                <button type="submit">Search</button>
+        </form>
+</div>
+{{> navbar}}
 
-<form action="/discover/{{_id}}" method="post">
 
-        
-        <label for="artist"></label>
-        <input required type="text" name="artist" placeholder="Artist Name"/>
-        <br>
-        <button type="submit">Search</button>
-
-   
-</form>
-
-<a href="/users/discover">Discover</a>
-<br>
-<a href="/users/profile">Profile</a>
 

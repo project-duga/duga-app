@@ -1,5 +1,8 @@
 require('dotenv').config()
 
+const path = require("path");
+const hbs = require("hbs");
+
 
 var createError = require('http-errors');
 var express = require('express');
@@ -9,6 +12,9 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var app = express();
+
+// Register partials
+hbs.registerPartials(path.join(__dirname, "/views/partials"));
 
 
 // Functional curling style of loading configuration
