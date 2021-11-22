@@ -12,6 +12,7 @@ var usersRouter = require('./routes/users');
 var app = express();
 
 
+
 // Functional curling style of loading configuration
 require('./config/db')
 require('./config/global')(app)
