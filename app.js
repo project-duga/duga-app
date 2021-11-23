@@ -12,13 +12,14 @@ var express = require('express');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var playlistRouter = require('./routes/playlist');
 
-var app = express();
 
 // Register partials
 hbs.registerPartials(path.join(__dirname, "/views/partials"));
 //require the pakage spotify-web-api-node
 const SpotifyWebApi = require('spotify-web-api-node');
+var app = express();
 
 
 // Functional curling style of loading configuration
@@ -29,6 +30,7 @@ require('./config/global')(app)
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/playlist', playlistRouter);
 
 
 // catch 404 and forward to error handler
