@@ -5,11 +5,11 @@ const User = require("../models/User.model");
 const Api = require("../apis/api");
 //require model playlist
 
+//Get artist
 router.get("/discover", (req, res, next) => {
     const { artist } = req.query;
 
-    Api
-        .searchArtists(artist, { limit: 10 })
+    Api.searchArtists(artist, { limit: 10 })
         .then((data) => {
             console.log("data -> ", data);
             const artistsArray = data.body.artists.items;
@@ -21,25 +21,23 @@ router.get("/discover", (req, res, next) => {
         );
 });
 
-// Get Recommendations Based on Seeds
-// spotifyApi
-//     .getRecommendations({
-//         min_energy: 0.4,
-//         seed_artists: ["6mfK6Q2tzLMEchAr0e9Uzu", "4DYFVNKZ1uixa6SQTvzQwJ"],
-//         min_popularity: 50,
-//     })
-//     .then(
-//         function (data) {
-//             let recommendations = data.body;
-//             console.log(recommendations);
-//         },
-//         function (err) {
-//             console.log("Something went wrong!", err);
-//         }
-//     );
+//Get Recommendations Based on Seeds
 
-
-
-
+/* router.get("/swipping")
+Api
+    .getRecommendations({
+        min_energy: 0.4,
+        seed_artists: ["6mfK6Q2tzLMEchAr0e9Uzu"],
+        min_popularity: 50,
+    })
+    .then(
+        function (data) {
+            let recommendations = data.body;
+            console.log(recommendations);
+        },
+        function (err) {
+            console.log("Something went wrong!", err);
+        }
+    ); */
 
 module.exports = router;
