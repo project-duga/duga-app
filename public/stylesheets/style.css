@@ -1,5 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600;700&family=Press+Start+2P&display=swap");
 
+* {
+  box-sizing: border-box;
+}
+
 :root {
   --main-bg-color: #1b1e28;
   --form-field-bg: #2c2f3e;
@@ -33,13 +37,15 @@ a {
 }
 
 h1 {
-  font-weight: 500 !important;
-  font-size: 5rem;
+  font-weight: 400 !important;
+  font-size: 4.5rem;
   margin-bottom: 30px;
 }
 
 h2 {
+  font-weight: 500 !important;
   font-size: 4rem;
+  margin-top: 0;
 }
 
 h3 {
@@ -50,86 +56,18 @@ h4 {
   font-weight: 400 !important;
 }
 
-.form-fields {
-  background-color: var(--form-field-bg);
-  border: none;
-  border-radius: 8px;
-  width: 100%;
-  height: 7vh;
-  margin-bottom: 20px;
-}
-
 button {
   background-color: var(--accent-color);
   color: #ffffff;
   border: none;
-  border-radius: 8px;
+  border-radius: 16px;
   width: 100%;
   height: 7vh;
-  font-size: 3em;
+  font-size: 3rem;
   margin-top: 1vh;
 }
 
-::placeholder {
-  color: var(--form-text-color);
-  font-size: 2.5em !important;
-  font-size: 2em;
-}
-
-input[type="email"] {
-  color: var(--form-text-color);
-  font-size: 16px !important;
-  font-size: 1.5em;
-  padding-left: 15px;
-}
-
-input[type="password"] {
-  color: var(--form-text-color);
-  font-size: 16px !important;
-  font-size: 1.5em;
-  padding-left: 15px;
-}
-
-input[type="text"] {
-  color: var(--form-text-color);
-  font-size: 16px !important;
-  font-size: 1.5em;
-  padding-left: 15px;
-}
-
-form i {
-  margin-left: -30px;
-  margin-top: -10px;
-  cursor: pointer;
-}
-
-form p {
-  margin: 0;
-}
-
-.tagline {
-  position: fixed;
-  bottom: 40px !important;
-  font-size: 14px;
-  text-align: center;
-  left: 50%;
-  transform: translate(-50%, 0);
-  min-width: 230px;
-}
-
-.discover-hero {
-  top: 2vh;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 100%;
-}
-
-.splash {
-  background-image: url("");
-  bottom: 0px !important;
-  width: 100%;
-}
+/* Navbar */
 
 nav {
   position: fixed;
@@ -152,20 +90,92 @@ nav ul li {
   display: inline;
 }
 
-.playlist-title {
-  width: 100%;
-  border-top: 1px solid var(--form-text-color);
-  border-bottom: 1px solid var(--form-text-color);
-}
-
 .nav-profile {
   float: right;
   padding-right: 25px;
 }
 
+/* Formularios */
+
+.form-fields {
+  background-color: var(--form-field-bg);
+  border: none;
+  border-radius: 16px;
+  width: 100%;
+  height: 7vh;
+  margin-bottom: 1.5vh;
+}
+
+::placeholder {
+  color: var(--form-text-color);
+  font-size: 3rem;
+  padding-left: 3vw;
+}
+
+input[type="email"] {
+  color: var(--form-text-color);
+  font-size: 3rem;
+  padding-left: 3vw;
+}
+
+input[type="password"] {
+  color: var(--form-text-color);
+  font-size: 3rem;
+  padding-left: 3vw;
+}
+
+input[type="text"] {
+  color: var(--form-text-color);
+  font-size: 3rem;
+  padding-left: 3vw;
+}
+
+form i {
+  margin-left: -100px;
+  cursor: pointer;
+  font-size: 50px;
+  vertical-align: super;
+}
+
+form p {
+  margin: 0;
+}
+
+/* Formularios */
+
+.tagline {
+  position: fixed;
+  bottom: 40px !important;
+  font-size: 14px;
+  text-align: center;
+  left: 50%;
+  transform: translate(-50%, 0);
+  min-width: 80vw;
+}
+
+.discover-hero {
+  top: 2vh;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+
+.splash {
+  background-image: url("");
+  bottom: 0px !important;
+  width: 100%;
+}
+
 .profile-header {
   display: flex;
   margin-bottom: 25px;
+}
+
+.playlist-title {
+  width: 100%;
+  border-top: 1px solid var(--form-text-color);
+  border-bottom: 1px solid var(--form-text-color);
 }
 
 .playlists {
@@ -203,6 +213,7 @@ nav ul li {
 
 .centered-block {
   text-align: center;
+  margin-bottom: 10vh;
 }
 
 .centered-block img {
@@ -216,7 +227,8 @@ nav ul li {
 }
 
 .centered-block p {
-  margin-bottom: 30px;
+  font-size: 2rem;
+  margin-bottom: 3vh;
 }
 
 .swipe-buttons {
@@ -237,4 +249,11 @@ nav ul li {
 .conf-art-block ul li {
   list-style-type: none;
   text-decoration: none;
+}
+
+.art-list-item {
+  padding-top: 3vh;
+  padding-bottom: 3vh;
+  border-top: 1px solid var(--form-text-color);
+  border-bottom: 1px solid var(--form-text-color);
 }

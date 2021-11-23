@@ -1,10 +1,10 @@
 <div class="centered-block">
         <div class="discover-hero">
-        <img src="/images/discover.png">
+                <img src="/images/discover.png">
         </div>
         <h2>Discover New Music</h2>
         <p>Just type any artist you like and we will give you a list of tunes we think you may like</p>
-        <form action="/discover/{{_id}}" method="post">
+        <form action="/playlist/discover/" method="get">
                 <label for="artist"></label>
                 <input required type="text" name="artist" placeholder="Choose an artist you like" class="form-fields"/>
                 <br>
@@ -13,19 +13,4 @@
 </div>
 {{> navbar}}
 
-
-<form action="/playlist/discover/" method="get">
-
-        
-        <label for="artist"></label>
-        <input required type="text" name="artist" placeholder="Artist Name"/>
-        <br>
-        <button type="submit">Search</button>
-
-   
-</form>
-
-<a href="/users/discover">Discover</a>
-<br>
-<a href="/users/profile">Profile</a>
 
