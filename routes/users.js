@@ -2,6 +2,7 @@ var express = require("express");
 var router = express.Router();
 const bcrypt = require("bcrypt");
 const User = require("../models/User.model");
+const multerUploader = require("../middleware/multerUploader")
 
 const isLoggedIn = require("./../middleware/isLoggedIn");
 const isNotLoggedIn = require("../middleware/isNotLoggedIn");
@@ -36,6 +37,7 @@ router
     const hashPwd = bcrypt.hashSync(password, salt);
 
     const newUser = await User.create({ name, email, password: hashPwd });
+    req.session.loggedinUser = newUser;
     res.redirect("/users/discover");
   })
   .post(async (req, res) => {
@@ -129,10 +131,18 @@ router.route("/discover").get(isLoggedIn, (req, res) => {
 });
 
 //Profile
-router.route("/profile").get(isLoggedIn, (req, res) => {
+router.route("/profile")
+.get(isLoggedIn, (req, res) => {
   const { name, email, avatarUrl } = req.session.loggedinUser;
-  res.render("profile", { name, email, avatarUrl }); // Tamibne se puede pasar toto el ussuraio con loggedinUser
-});
+  res.render("profile", { name, email, avatarUrl }); 
+})
+.post(multerUploader.single("imgUrl"), (req, res) => {
+  const userId = req.session.loggedinUser;
+  const imgUrl = req.file.path
+
+})
+
+
 
 //Confirm Artist
 router.route("/confirmartist").get(isLoggedIn, (req, res) => {
