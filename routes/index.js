@@ -4,15 +4,9 @@ var router = express.Router();
 const User = require("../models/User.model");
 const Api = require("../apis/api");
 
-
 router.get("/", (req, res, next) => {
     res.render("index");
 });
-
-// GET '/artist-search?artist=nombre-del-artista' => devuelve artistas que corresponden a ese nombre
-
-
-///////////
 
 /* GET discover page. */
 router.get("/", (req, res) => {

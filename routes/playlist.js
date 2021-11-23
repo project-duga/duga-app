@@ -21,23 +21,27 @@ router.get("/discover", (req, res, next) => {
         );
 });
 
-//Get Recommendations Based on Seeds
+//Get Recommendations Based on Seeds WIP
 
-/* router.get("/swipping")
-Api
-    .getRecommendations({
-        min_energy: 0.4,
-        seed_artists: ["6mfK6Q2tzLMEchAr0e9Uzu"],
-        min_popularity: 50,
-    })
-    .then(
+router.get("/:id", (req, res) => {
+    const artistId  = req.params.id;
+
+    console.log(artistId);
+    Api.getRecommendations({
+        market: ES,
+        seed_artists: artistId,
+        target_popularity: 50
+    }).then(
         function (data) {
+            console.log(data);
             let recommendations = data.body;
-            console.log(recommendations);
+            //console.log(recommendations);
+            //res.render("swipping", {track: recommendations});
         },
         function (err) {
             console.log("Something went wrong!", err);
         }
-    ); */
+    );
+});
 
 module.exports = router;
