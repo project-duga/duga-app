@@ -9,84 +9,77 @@ const isLoggedIn = require("./../middleware/isLoggedIn");
 const isNotLoggedIn = require("../middleware/isNotLoggedIn");
 //require model playlist
 
-
 router.get("/artist-confirmation", isLoggedIn, (req, res, next) => {
-    const { artist } = req.query;
+  const { artist } = req.query;
 
-    Api.searchArtists(artist, { limit: 10 })
-        .then((data) => {
-            console.log("data -> ", data);
-            const artistsArray = data.body.artists.items;
-            console.log(artistsArray);
-            res.render("artist-confirmation", { artists: artistsArray });
-        })
-        .catch((err) =>
-            console.log("The error while searching artists occurred: ", err)
-        );
+  Api.searchArtists(artist, { limit: 10 })
+    .then((data) => {
+      const artistsArray = data.body.artists.items;
+      res.render("artist-confirmation", { artists: artistsArray });
+    })
+    .catch((err) =>
+      console.log("The error while searching artists occurred: ", err)
+    );
 });
 
 // Discover
 
-router.route("/discover")
-.get(isLoggedIn, (req, res) => {
+router.route("/discover").get(isLoggedIn, (req, res) => {
   const name = req.session.loggedinUser.name;
 
   res.render("discover", { name });
-  
 });
 
-
 //Artist-Confirm
-router.route("/artist-confirmation")
-.get(isLoggedIn, (req, res) => {
+router.route("/artist-confirmation").get(isLoggedIn, (req, res) => {
   res.render("artist-confirmation");
-})
-.post(async (req, res) => {
+});
+
+router.route("/create/:id").post(isLoggedIn, async (req, res) => {
+  try {
+    const artistId = req.params.id;
+    const newPlaylist = await Playlist.create({ name: "untitled" });
+    const userId = req.session.loggedinUser._id;
+    const updatedUser = await User.findByIdAndUpdate(
+      userId,
+      {
+        $push: { favouriteplaylists: newPlaylist._id },
+      },
+      { new: true }
+    );
+    res.redirect(`swipe/${artistId}/${newPlaylist._id}`);
+    // console.log("updateduser", updatedUser);
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+//Swipe
+router
+  .route("/swipe/:artistId/:playlistId")
+  .get(isLoggedIn, async (req, res) => {
     try {
-      const { name } = req.body;
-      if (!name) {
-        res.render("generatelist", {
-          name,
-          error: { type: "CRED_ERR", msg: "Missing credentials" },
-        });
-      }
-    
-      const newPlaylist = await Playlist.create({name});
-      console.log(newPlaylist)
-      
-      res.redirect("/users/profile");
+      const artistId = req.params.artistId;
+      const playlistId = req.params.playlistId;
+       
+      const currentPlaylist = await Playlist.findById(playlistId);
+
+
+      res.render("swipe");
     } catch (err) {
       console.log(err);
     }
   });
 
-//Swipe
-router.route("/swipe")
-.get(isLoggedIn, (req, res) => {
-  res.render("swipe");
-});
-
 //Playlist
-router.route("/playlist")
-.get(isLoggedIn, (req, res) => {
+router.route("/playlist").get(isLoggedIn, (req, res) => {
   res.render("playlist");
 });
 
-
-
 //GenerateList
-router.route("/create-list")
-.get(isLoggedIn, (req, res) => {
+router.route("/create-list").get(isLoggedIn, (req, res) => {
   res.render("create-list");
 });
-
-
-
-
-
-
-
-  
 
 // //Get Recommendations Based on Seeds WIP
 
