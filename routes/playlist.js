@@ -90,25 +90,25 @@ router.route("/create-list")
 
 // //Get Recommendations Based on Seeds WIP
 
-// router.get("/:id", (req, res) => {
-//     const artistId  = req.params.id;
+router.get("/:id", (req, res) => {
+    const artistId  = req.params.id;
 
-//     console.log(artistId);
-//     Api.getRecommendations({
-//         market: ES,
-//         seed_artists: artistId,
-//         target_popularity: 50
-//     }).then(
-//         function (data) {
-//             console.log(data);
-//             let recommendations = data.body;
-//             //console.log(recommendations);
-//             //res.render("swipping", {track: recommendations});
-//         },
-//         function (err) {
-//             console.log("Something went wrong!", err);
-//         }
-//     );
-// });
+    console.log(artistId);
+    Api.getRecommendations({
+        market: ES,
+        seed_artists: artistId,
+        target_popularity: 50
+    }).then(
+        function (data) {
+            console.log(data);
+            let recommendations = data.body;
+            //console.log(recommendations);
+            //res.render("swipping", {track: recommendations});
+        },
+        function (err) {
+            console.log("Something went wrong!", err);
+        }
+    );
+});
 
 module.exports = router;
