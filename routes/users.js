@@ -14,31 +14,6 @@ router
     res.render("signup-form");
   })
   .post(async (req, res) => {
-    const { name, email, password } = req.body;
-    if (!name || !email || !password) {
-      res.render("signup-form", {
-        name,
-        email,
-        error: { type: "CRED_ERR", msg: "Missing credentials" },
-      });
-    }
-
-    const user = await User.findOne({ email });
-    if (user) {
-      res.render("signup-form", {
-        name,
-        email,
-        error: { type: "USR_ERR", msg: "Email exists" },
-      });
-    }
-
-    const salt = bcrypt.genSaltSync(5);
-    const hashPwd = bcrypt.hashSync(password, salt);
-
-    const newUser = await User.create({ name, email, password: hashPwd });
-    res.redirect("/users/discover");
-  })
-  .post(async (req, res) => {
     try {
       const { name, email, password } = req.body;
       if (!name || !email || !password) {
@@ -64,7 +39,7 @@ router
       const newUser = await User.create({ name, email, password: hashPwd });
       req.session.loggedinUser = newUser;
 
-      res.redirect("/users/discover");
+      res.redirect("/playlist/discover");
     } catch (err) {
       console.log(err);
     }
@@ -97,7 +72,7 @@ router
 
       if (pswIsCorrect) {
         req.session.loggedinUser = loggedinUser;
-        res.redirect("/users/discover");
+        res.redirect("/playlist/discover");
       } else {
         res.render("login-form", {
           error: { type: "PWD_ERR", msg: "Password incorrect" },

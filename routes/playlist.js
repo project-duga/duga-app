@@ -75,9 +75,9 @@ router.route("/playlist")
 
 
 //GenerateList
-router.route("/generatelist")
+router.route("/create-list")
 .get(isLoggedIn, (req, res) => {
-  res.render("generatelist");
+  res.render("create-list");
 });
 
 
