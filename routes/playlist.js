@@ -13,8 +13,7 @@ const isNotLoggedIn = require("../middleware/isNotLoggedIn");
 router.get("/artist-confirmation", isLoggedIn, (req, res, next) => {
     const { artist } = req.query;
 
-    Api
-        .searchArtists(artist, { limit: 10 })
+    Api.searchArtists(artist, { limit: 10 })
         .then((data) => {
             console.log("data -> ", data);
             const artistsArray = data.body.artists.items;
@@ -89,5 +88,27 @@ router.route("/generatelist")
 
   
 
+// //Get Recommendations Based on Seeds WIP
+
+// router.get("/:id", (req, res) => {
+//     const artistId  = req.params.id;
+
+//     console.log(artistId);
+//     Api.getRecommendations({
+//         market: ES,
+//         seed_artists: artistId,
+//         target_popularity: 50
+//     }).then(
+//         function (data) {
+//             console.log(data);
+//             let recommendations = data.body;
+//             //console.log(recommendations);
+//             //res.render("swipping", {track: recommendations});
+//         },
+//         function (err) {
+//             console.log("Something went wrong!", err);
+//         }
+//     );
+// });
 
 module.exports = router;

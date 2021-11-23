@@ -1,5 +1,9 @@
 require('dotenv').config()
 
+const path = require("path");
+const hbs = require("hbs");
+
+
 var createError = require('http-errors');
 var express = require('express');
 
@@ -11,6 +15,10 @@ var usersRouter = require('./routes/users');
 var playlistRouter = require('./routes/playlist');
 
 
+// Register partials
+hbs.registerPartials(path.join(__dirname, "/views/partials"));
+//require the pakage spotify-web-api-node
+const SpotifyWebApi = require('spotify-web-api-node');
 var app = express();
 
 
