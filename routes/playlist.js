@@ -47,7 +47,8 @@ router.route("/create/:id").post(isLoggedIn, async (req, res) => {
       },
       { new: true }
     );
-    res.redirect(`swipe/${artistId}/${newPlaylist._id}`);
+
+    res.redirect(`/playlist/swipe/${artistId}/${newPlaylist._id}`);
     // console.log("updateduser", updatedUser);
   } catch (err) {
     console.log(err);
@@ -61,11 +62,26 @@ router
     try {
       const artistId = req.params.artistId;
       const playlistId = req.params.playlistId;
-       
+
       const currentPlaylist = await Playlist.findById(playlistId);
+      console.log(currentPlaylist);
+      if (currentPlaylist.tracks.length < 5) {
+        const track = await Api.getRecommendations({
+          seed_artists: artistId,
+          limit: 1,
+          market: "ES",
+        });
 
-
-      res.render("swipe");
+        // await Playlist.findByIdAndUpdate(playlistId,{
+        //   $push: { tracks: "track number 1" },
+        // });
+        //res.redirect(`/playlist/swipe/${artistId}/${playlistId}`);
+        console.log(track.body.tracks[0]);
+        console.log("Jordi ---->", track.body.tracks[0].album.images[0].url);
+        res.render("swipe", { track: track.body.tracks[0] });
+      } else {
+        res.redirect("/playlist/create-list");
+      }
     } catch (err) {
       console.log(err);
     }
