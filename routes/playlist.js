@@ -2,10 +2,15 @@ var express = require("express");
 var router = express.Router();
 
 const User = require("../models/User.model");
+const Playlist = require("../models/Playlist.model");
 const Api = require("../apis/api");
+
+const isLoggedIn = require("./../middleware/isLoggedIn");
+const isNotLoggedIn = require("../middleware/isNotLoggedIn");
 //require model playlist
 
-router.get("/discover", (req, res, next) => {
+
+router.get("/artist-confirmation", isLoggedIn, (req, res, next) => {
     const { artist } = req.query;
 
     Api
@@ -21,25 +26,68 @@ router.get("/discover", (req, res, next) => {
         );
 });
 
-// Get Recommendations Based on Seeds
-// spotifyApi
-//     .getRecommendations({
-//         min_energy: 0.4,
-//         seed_artists: ["6mfK6Q2tzLMEchAr0e9Uzu", "4DYFVNKZ1uixa6SQTvzQwJ"],
-//         min_popularity: 50,
-//     })
-//     .then(
-//         function (data) {
-//             let recommendations = data.body;
-//             console.log(recommendations);
-//         },
-//         function (err) {
-//             console.log("Something went wrong!", err);
-//         }
-//     );
+// Discover
+
+router.route("/discover")
+.get(isLoggedIn, (req, res) => {
+  const name = req.session.loggedinUser.name;
+
+  res.render("discover", { name });
+  
+});
+
+
+//Artist-Confirm
+router.route("/artist-confirmation")
+.get(isLoggedIn, (req, res) => {
+  res.render("artist-confirmation");
+})
+.post(async (req, res) => {
+    try {
+      const { name } = req.body;
+      if (!name) {
+        res.render("generatelist", {
+          name,
+          error: { type: "CRED_ERR", msg: "Missing credentials" },
+        });
+      }
+    
+      const newPlaylist = await Playlist.create({name});
+      console.log(newPlaylist)
+      
+      res.redirect("/users/profile");
+    } catch (err) {
+      console.log(err);
+    }
+  });
+
+//Swipe
+router.route("/swipe")
+.get(isLoggedIn, (req, res) => {
+  res.render("swipe");
+});
+
+//Playlist
+router.route("/playlist")
+.get(isLoggedIn, (req, res) => {
+  res.render("playlist");
+});
 
 
 
+//GenerateList
+router.route("/generatelist")
+.get(isLoggedIn, (req, res) => {
+  res.render("generatelist");
+});
+
+
+
+
+
+
+
+  
 
 
 module.exports = router;

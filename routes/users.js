@@ -2,7 +2,6 @@ var express = require("express");
 var router = express.Router();
 const bcrypt = require("bcrypt");
 const User = require("../models/User.model");
-const Playlist = require("../models/Playlist.model");
 
 const isLoggedIn = require("./../middleware/isLoggedIn");
 const isNotLoggedIn = require("../middleware/isNotLoggedIn");
@@ -118,60 +117,13 @@ router.get("/logout", (req, res) => {
   });
 });
 
-// Discover
 
-router.route("/discover").get(isLoggedIn, (req, res) => {
-  const name = req.session.loggedinUser.name;
-
-  res.render("discover", { name });
-  // .post(async (req, res) => {
-
-  // })
-});
 
 //Profile
-router.route("/profile").get(isLoggedIn, (req, res) => {
+router.route("/profile")
+.get(isLoggedIn, (req, res) => {
   const { name, email, avatarUrl } = req.session.loggedinUser;
-  res.render("profile", { name, email, avatarUrl }); // Tamibne se puede pasar toto el ussuraio con loggedinUser
-});
-
-//Confirm Artist
-router.route("/confirmartist").get(isLoggedIn, (req, res) => {
-  res.render("confirmartist");
-});
-
-//Swipe
-router.route("/swipe").get(isLoggedIn, (req, res) => {
-  res.render("swipe");
-});
-
-//Playlist
-router.route("/playlist").get(isLoggedIn, (req, res) => {
-  res.render("playlist");
-});
-
-
-
-//GenerateList
-router.route("/generatelist").get(isLoggedIn, (req, res) => {
-  res.render("generatelist");
-})
-.post(async (req, res) => {
-  try {
-    const { name } = req.body;
-    if (!name) {
-      res.render("generatelist", {
-        name,
-        error: { type: "CRED_ERR", msg: "Missing credentials" },
-      });
-    }
-
-    const newPlaylist = await Playlist.create({ image, name, tracks});
-    
-    res.redirect("/users/profile");
-  } catch (err) {
-    console.log(err);
-  }
+  res.render("profile", { name, email, avatarUrl }); 
 });
 
 
