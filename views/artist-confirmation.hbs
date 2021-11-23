@@ -1,7 +1,28 @@
-<div>
+<div class="centered-block conf-art-block">
+    <h2>Confirm Artist</h2>
+
+    <div>
+        <ul>
+        {{#each artists}}
+            <li class="art-list-item"><a href="/recomentation/{{this.id}}">{{this.name}}</a></li>
+        {{/each}}
+        </ul>
+    </div>
+
+    <h3>Not what you are looking for? Try again</h3>
+    <form action="/playlist/discover/" method="get">
+                <label for="artist"></label>
+                <input required type="text" name="artist" placeholder="Search again" class="form-fields"/>
+                <br>
+                <button type="submit">Search</button>
+    </form>
+</div>
+{{> navbar}}
+
+{{!-- <div>
     {{#each artists}}
         <div>
             <a href="/playlist/{{this.id}}">{{this.name}}</a>
         </div>
     {{/each}}
-</div>
+</div> --}}
