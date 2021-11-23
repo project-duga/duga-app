@@ -7,6 +7,7 @@ const Api = require("../apis/api");
 
 const isLoggedIn = require("./../middleware/isLoggedIn");
 const isNotLoggedIn = require("../middleware/isNotLoggedIn");
+
 //require model playlist
 
 router.get("/artist-confirmation", isLoggedIn, (req, res, next) => {
@@ -48,7 +49,9 @@ router.route("/create/:id").post(isLoggedIn, async (req, res) => {
       { new: true }
     );
 
-    res.redirect(`/playlist/swipe/${artistId}/${newPlaylist._id}`);
+    res.redirect(
+      `/playlist/swipe/?artist=${artistId}&playlist=${newPlaylist._id}`
+    );
     // console.log("updateduser", updatedUser);
   } catch (err) {
     console.log(err);
@@ -56,36 +59,83 @@ router.route("/create/:id").post(isLoggedIn, async (req, res) => {
 });
 
 //Swipe
-router
-  .route("/swipe/:artistId/:playlistId")
-  .get(isLoggedIn, async (req, res) => {
-    try {
-      const artistId = req.params.artistId;
-      const playlistId = req.params.playlistId;
+router.get("/swipe", isLoggedIn, async (req, res) => {
+  try {
+    const artistId = req.query.artist;
+    const playlistId = req.query.playlist;
+    const trackId = req.query.track;
+    const operation = req.query.operation;
 
+    if (operation === "YES") {
+      const currentPlaylist = await Playlist.findByIdAndUpdate(
+        playlistId,
+        { $push: { tracks: trackId } },
+        { new: true }
+      );
+    } else if (operation === "NO") {
+      const currentPlaylist = await Playlist.findByIdAndUpdate(
+        playlistId,
+        { $push: { blacklist: trackId } },
+        { new: true }
+      );
+    } else {
       const currentPlaylist = await Playlist.findById(playlistId);
-      console.log(currentPlaylist);
-      if (currentPlaylist.tracks.length < 5) {
-        const track = await Api.getRecommendations({
+    }
+
+    if (currentPlaylist.tracks.length < 5) {
+      let track;
+      do {
+        track = await Api.getRecommendations({
           seed_artists: artistId,
           limit: 1,
-          market: "ES",
         });
+      } while (
+        currentPlaylist.tracks.includes(track.id) ||
+        currentPlaylist.blacklist.includes(track.id)
+      );
 
-        // await Playlist.findByIdAndUpdate(playlistId,{
-        //   $push: { tracks: "track number 1" },
-        // });
-        //res.redirect(`/playlist/swipe/${artistId}/${playlistId}`);
-        console.log(track.body.tracks[0]);
-        console.log("Jordi ---->", track.body.tracks[0].album.images[0].url);
-        res.render("swipe", { track: track.body.tracks[0] });
-      } else {
-        res.redirect("/playlist/create-list");
-      }
-    } catch (err) {
-      console.log(err);
+      res.render("swipe", {
+        track: track.body.tracks[0],
+        artist: artistId,
+        playlist: playlistId,
+      });
+    } else {
+      res.redirect("/playlist/create-list");
     }
-  });
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+//Ghost Route
+
+// router
+//   .route("/choose/:artistId/:playlistId/:recomendedId")
+//   .post(isLoggedIn, async (req, res) => {
+//     try {
+//       const artistId = req.params.artistId;
+//       const playlistId = req.params.playlistId;
+//       const recomendedId = req.params.recomendedId;
+
+//       const updatedPlaylist = await Playlist.findByIdAndUpdate(playlistId, {
+//         $push: {},
+//       });
+
+//       //   const userId = req.session.loggedinUser._id;
+//       const updatedUser = await User.findByIdAndUpdate(
+//         userId,
+//         {
+//           $push: { favouriteplaylists: newPlaylist._id },
+//         },
+//         { new: true }
+//       );
+
+//       res.redirect(`/playlist/swipe/${artistId}/${newPlaylist._id}`);
+//       // console.log("updateduser", updatedUser);
+//     } catch (err) {
+//       console.log(err);
+//     }
+//   });
 
 //Playlist
 router.route("/playlist").get(isLoggedIn, (req, res) => {
@@ -96,28 +146,5 @@ router.route("/playlist").get(isLoggedIn, (req, res) => {
 router.route("/create-list").get(isLoggedIn, (req, res) => {
   res.render("create-list");
 });
-
-// //Get Recommendations Based on Seeds WIP
-
-// router.get("/:id", (req, res) => {
-//     const artistId  = req.params.id;
-
-//     console.log(artistId);
-//     Api.getRecommendations({
-//         market: ES,
-//         seed_artists: artistId,
-//         target_popularity: 50
-//     }).then(
-//         function (data) {
-//             console.log(data);
-//             let recommendations = data.body;
-//             //console.log(recommendations);
-//             //res.render("swipping", {track: recommendations});
-//         },
-//         function (err) {
-//             console.log("Something went wrong!", err);
-//         }
-//     );
-// });
 
 module.exports = router;
