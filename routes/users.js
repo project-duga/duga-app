@@ -2,6 +2,7 @@ var express = require("express");
 var router = express.Router();
 const bcrypt = require("bcrypt");
 const User = require("../models/User.model");
+const Playlist = require("../models/Playlist.model");
 
 const isLoggedIn = require("./../middleware/isLoggedIn");
 const isNotLoggedIn = require("../middleware/isNotLoggedIn");
@@ -149,14 +150,29 @@ router.route("/playlist").get(isLoggedIn, (req, res) => {
   res.render("playlist");
 });
 
-//Confirm
-router.route("/profile").get(isLoggedIn, (req, res) => {
-  res.render("profile");
-});
+
 
 //GenerateList
 router.route("/generatelist").get(isLoggedIn, (req, res) => {
   res.render("generatelist");
+})
+.post(async (req, res) => {
+  try {
+    const { name } = req.body;
+    if (!name) {
+      res.render("generatelist", {
+        name,
+        error: { type: "CRED_ERR", msg: "Missing credentials" },
+      });
+    }
+
+    const newPlaylist = await Playlist.create({ image, name, tracks});
+    
+    res.redirect("/users/profile");
+  } catch (err) {
+    console.log(err);
+  }
 });
+
 
 module.exports = router;
