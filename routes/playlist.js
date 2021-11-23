@@ -65,21 +65,22 @@ router.get("/swipe", isLoggedIn, async (req, res) => {
     const playlistId = req.query.playlist;
     const trackId = req.query.track;
     const operation = req.query.operation;
+    let currentPlaylist;
 
     if (operation === "YES") {
-      const currentPlaylist = await Playlist.findByIdAndUpdate(
+      currentPlaylist = await Playlist.findByIdAndUpdate(
         playlistId,
         { $push: { tracks: trackId } },
         { new: true }
       );
     } else if (operation === "NO") {
-      const currentPlaylist = await Playlist.findByIdAndUpdate(
+      currentPlaylist = await Playlist.findByIdAndUpdate(
         playlistId,
         { $push: { blacklist: trackId } },
         { new: true }
       );
     } else {
-      const currentPlaylist = await Playlist.findById(playlistId);
+      currentPlaylist = await Playlist.findById(playlistId);
     }
 
     if (currentPlaylist.tracks.length < 5) {
@@ -106,36 +107,6 @@ router.get("/swipe", isLoggedIn, async (req, res) => {
     console.log(err);
   }
 });
-
-//Ghost Route
-
-// router
-//   .route("/choose/:artistId/:playlistId/:recomendedId")
-//   .post(isLoggedIn, async (req, res) => {
-//     try {
-//       const artistId = req.params.artistId;
-//       const playlistId = req.params.playlistId;
-//       const recomendedId = req.params.recomendedId;
-
-//       const updatedPlaylist = await Playlist.findByIdAndUpdate(playlistId, {
-//         $push: {},
-//       });
-
-//       //   const userId = req.session.loggedinUser._id;
-//       const updatedUser = await User.findByIdAndUpdate(
-//         userId,
-//         {
-//           $push: { favouriteplaylists: newPlaylist._id },
-//         },
-//         { new: true }
-//       );
-
-//       res.redirect(`/playlist/swipe/${artistId}/${newPlaylist._id}`);
-//       // console.log("updateduser", updatedUser);
-//     } catch (err) {
-//       console.log(err);
-//     }
-//   });
 
 //Playlist
 router.route("/playlist").get(isLoggedIn, (req, res) => {
