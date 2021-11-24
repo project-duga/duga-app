@@ -4,13 +4,19 @@
     <div>
         <ul>
         {{#each artists}}
-            <li class="art-list-item"><a href="/recomentation/{{this.id}}">{{this.name}}</a></li>
+            <li class="art-list-item">
+                <form action="/playlist/create/{{this.id}}" method="POST">
+                    <button>
+                        {{this.name}}
+                    </button>
+                    </form>
+                    </li>
         {{/each}}
         </ul>
     </div>
 
     <h3>Not what you are looking for? Try again</h3>
-    <form action="/playlist/discover/" method="get">
+    <form action="/playlist/artist-confirmation/" method="get">
                 <label for="artist"></label>
                 <input required type="text" name="artist" placeholder="Search again" class="form-fields"/>
                 <br>
