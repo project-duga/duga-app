@@ -31,11 +31,6 @@ router.route("/discover").get(isLoggedIn, (req, res) => {
   res.render("discover", { name });
 });
 
-//Artist-Confirm
-router.route("/artist-confirmation").get(isLoggedIn, (req, res) => {
-  res.render("artist-confirmation");
-});
-
 router.route("/create/:id").post(isLoggedIn, async (req, res) => {
   try {
     const artistId = req.params.id;
@@ -118,6 +113,7 @@ router
     .route("/create-list")
     .get(isLoggedIn, async (req, res) => {
         const playlistId = req.query.playlistId;
+
         res.render("create-list", { playlistId: playlistId });
     })
     .post(isLoggedIn, async (req, res) => {
