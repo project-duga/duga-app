@@ -130,7 +130,7 @@ router
                 { name },
                 { new: true }
             );
-            res.redirect(`/playlist/playlist`);
+            res.redirect(`/playlist/playlist/`);
         } catch (err) {
             console.log(err);
         }
