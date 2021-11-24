@@ -109,7 +109,9 @@ router.get("/swipe", isLoggedIn, async (req, res) => {
 });
 
 //Playlist
-router.route("/playlist").get(isLoggedIn, (req, res) => {
+router.route("/playlist")
+.get(isLoggedIn, (req, res) => {
+  
   res.render("playlist");
 });
 
@@ -130,7 +132,7 @@ router
                 { name },
                 { new: true }
             );
-            res.redirect(`/playlist/playlist/`);
+            res.redirect(`/playlist/playlist`);
         } catch (err) {
             console.log(err);
         }
