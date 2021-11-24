@@ -31,11 +31,6 @@ router.route("/discover").get(isLoggedIn, (req, res) => {
   res.render("discover", { name });
 });
 
-//Artist-Confirm
-router.route("/artist-confirmation").get(isLoggedIn, (req, res) => {
-  res.render("artist-confirmation");
-});
-
 router.route("/create/:id").post(isLoggedIn, async (req, res) => {
   try {
     const artistId = req.params.id;
@@ -101,7 +96,7 @@ router.get("/swipe", isLoggedIn, async (req, res) => {
         playlist: playlistId,
       });
     } else {
-      res.redirect("/playlist/create-list");
+      res.redirect(`/playlist/create-list/?playlistId=${playlistId}`);
     }
   } catch (err) {
     console.log(err);
@@ -114,8 +109,27 @@ router.route("/playlist").get(isLoggedIn, (req, res) => {
 });
 
 //GenerateList
-router.route("/create-list").get(isLoggedIn, (req, res) => {
-  res.render("create-list");
-});
+router
+    .route("/create-list")
+    .get(isLoggedIn, async (req, res) => {
+        const playlistId = req.query.playlistId;
+
+        res.render("create-list", { playlistId: playlistId });
+    })
+    .post(isLoggedIn, async (req, res) => {
+        try {
+            const playlistId = req.body.playlistId;
+            const name = req.body.namePlaylist;
+            console.log("parametros", name, playlistId);
+            await Playlist.findByIdAndUpdate(
+                playlistId,
+                { name },
+                { new: true }
+            );
+            res.redirect(`/playlist/playlist/`);
+        } catch (err) {
+            console.log(err);
+        }
+    });
 
 module.exports = router;
