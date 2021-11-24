@@ -103,50 +103,72 @@ router.get("/swipe", isLoggedIn, async (req, res) => {
   }
 });
 
-
 //GenerateList
 router
-    .route("/create-list")
-    .get(isLoggedIn, async (req, res) => {
-        const playlistId = req.query.playlistId;
+  .route("/create-list")
+  .get(isLoggedIn, async (req, res) => {
+    const playlistId = req.query.playlistId;
 
-        res.render("create-list", { playlistId: playlistId });
-    })
-    .post(isLoggedIn, async (req, res) => {
-        try {
-            const playlistId = req.body.playlistId;
-            const name = req.body.namePlaylist;
-            console.log("parametros", name, playlistId);
-            await Playlist.findByIdAndUpdate(
-                playlistId,
-                { name },
-                { new: true }
-            );
-            res.redirect(`/playlist/playlist/?name=${name}&playlistId=${playlistId}`);
-        } catch (err) {
-            console.log(err);
-        }
-    });
-
-    //Playlist
-router.route("/playlist")
-.get(isLoggedIn, (req, res) => {
-  const playlistName = req.query.name;
-
-  const playlistId = req.query.playlistId
-
-  Playlist.findById(playlistId)
-  .then((playlist) => {
-    console.log("line140", playlist.tracks)
-  } )
-  .catch((err)=>{
-    console.log(err)
+    res.render("create-list", { playlistId: playlistId });
   })
+  .post(isLoggedIn, async (req, res) => {
+    try {
+      const playlistId = req.body.playlistId;
+      const name = req.body.namePlaylist;
+      console.log("parametros", name, playlistId);
+      await Playlist.findByIdAndUpdate(playlistId, { name }, { new: true });
+      res.redirect(`/playlist/playlist/?name=${name}&playlistId=${playlistId}`);
+    } catch (err) {
+      console.log(err);
+    }
+  });
 
-   
-  
-  
-  res.render("playlist", { playlistName: playlistName });
+// //Playlist
+// router.route("/playlist").get(isLoggedIn, (req, res) => {
+//   const playlistName = req.query.name;
+//   const playlistId = req.query.playlistId;
+//   Playlist.findById(playlistId)
+//     .then((playlist) => {
+//       const arrTracks = playlist.tracks;
+//       const arrInfoTracks = arrTracks.map(async(el) => {
+//         Api.getTrack(el)
+//           .then((data) => {
+//               const trackName = data.body.name;
+//               const trackImg = data.body.preview_url;
+//               const trackArtist = data.body.artists[0].name;
+//           })
+//           .catch((err) => console.log(err));
+//           return package;
+//       });
+//     })
+//    res.render("playlist", { playlistName: playlistName });
+// });
+
+router.route("/playlist").get(isLoggedIn, async (req, res) => {
+  try {
+    const playlistName = req.query.name;
+    const playlistId = req.query.playlistId;
+    const playlistInfo = await Playlist.findById(playlistId);
+    const arrTracks = playlistInfo.tracks;
+    const arrInfoTracks = await Promise.all(
+      arrTracks.map(async (el) => {
+        try {
+          const trackInfo = await Api.getTrack(el)
+          const trackObject = {
+            name: trackInfo.body.name,
+            image: trackInfo.body.album.images[0].url,
+            artist: trackInfo.body.artists[0].name
+          }
+          return trackObject;
+        } catch (err) {
+          console.log(err);
+        }
+      })
+    );
+    res.render("playlist", { playlistName: playlistName, playlistTrackInfo: arrInfoTracks });
+  } catch (err) {
+    console.log(err);
+  }
 });
 
 module.exports = router;
