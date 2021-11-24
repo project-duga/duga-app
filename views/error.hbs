@@ -1,3 +1,12 @@
-<h1>{{message}}</h1>
-<h2>{{error.status}}</h2>
-<pre>{{error.stack}}</pre>
+<div class="centered-block">
+        <div class="error-smiley">
+            <h1><i class="bi bi-emoji-frown"></i></h1>
+        </div>
+        <h1>{{message}}</h1>
+        <p>We’d probably get results if you try again.</p>
+        <form action="/discover/{{_id}}" method="post">
+            <label for="artist"></label>
+            <button type="submit">Search Again</button>
+        </form>
+</div>
+{{> navbar}}

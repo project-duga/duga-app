@@ -101,5 +101,12 @@ router.route("/profile")
   res.render("profile", { name, email, avatarUrl }); 
 });
 
+//Profile
+router.route("/edit-profile")
+.get(isLoggedIn, (req, res) => {
+  const { name, email, avatarUrl } = req.session.loggedinUser;
+  res.render("edit-profile", { name, email, avatarUrl }); 
+});
+
 
 module.exports = router;

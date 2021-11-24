@@ -6,50 +6,45 @@
     <div class="user-info">
         <h3>{{name}}</h3>
         <p>{{email}}</p>
-        <a href="/users/logout">Logout</a>
+        <p>Edit</p>
     </div>
 </div>
 <div class="playlists">
     <div class="playlist-title">
         <h4>Playlists</h4>
     </div>
+    <div id="content">
+    </div>
+    {{#each playlist}}
+            <li class="art-list-item"><a href="/recomentation/{{this.id}}">{{this.name}}</a></li>
+    {{/each}}
     <div class="playlist-item">
-        <p>Playlist Name<span><i class="bi bi-play-fill" id="togglePlay"></i>
+        <p>Playlist Name<span>
         <i class="bi bi-x" id="toggleDelete"></i></span>
         </p>
     </div>
     <div class="playlist-item">
-        <p>Playlist Name<span><i class="bi bi-play-fill" id="togglePlay"></i>
+        <p>Playlist Name<span>
         <i class="bi bi-x" id="toggleDelete"></i></span>
         </p>
     </div>
     <div class="playlist-item">
-        <p>Playlist Name<span><i class="bi bi-play-fill" id="togglePlay"></i>
+        <p>Playlist Name<span>
         <i class="bi bi-x" id="toggleDelete"></i></span>
         </p>
     </div>
     <div class="playlist-item">
-        <p>Playlist Name<span><i class="bi bi-play-fill" id="togglePlay"></i>
+        <p>Playlist Name<span>
         <i class="bi bi-x" id="toggleDelete"></i></span>
         </p>
     </div>
     <div class="playlist-item">
-        <p>Playlist Name<span><i class="bi bi-play-fill" id="togglePlay"></i>
+        <p>Playlist Name<span>
         <i class="bi bi-x" id="toggleDelete"></i></span>
         </p>
     </div>
     <div class="playlist-item">
-        <p>Playlist Name<span><i class="bi bi-play-fill" id="togglePlay"></i>
-        <i class="bi bi-x" id="toggleDelete"></i></span>
-        </p>
-    </div>
-    <div class="playlist-item">
-        <p>Playlist Name<span><i class="bi bi-play-fill" id="togglePlay"></i>
-        <i class="bi bi-x" id="toggleDelete"></i></span>
-        </p>
-    </div>
-    <div class="playlist-item">
-        <p>Playlist Name<span><i class="bi bi-play-fill" id="togglePlay"></i>
+        <p>Playlist Name<span>
         <i class="bi bi-x" id="toggleDelete"></i></span>
         </p>
     </div>
