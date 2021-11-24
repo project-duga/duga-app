@@ -4,27 +4,108 @@
   box-sizing: border-box;
 }
 
-:root {
+/* :root {
   --main-bg-color: #1b1e28;
   --form-field-bg: #2c2f3e;
   --form-text-color: #707790;
   --accent-color: #16a7ff;
+} */
+
+:root {
+  --surface: #fff;
+  --bg: #e4e4e7;
+  --text: #71717a;
+  --form-text-color: #707790;
+  --accent-color: #16a7ff;
+  --shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  --inset: inset 0 0.125rem 0.25rem 0 rgba(0, 0, 0, 0.15);
 }
+
+.dark-theme {
+  --surface: #27272a;
+  --bg: #18181b;
+  --text: #a1a1aa;
+  --shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.3);
+  --shadow-inner: inset 0 0.125rem 0.25rem 0 rgba(0, 0, 0, 0.6);
+}
+
+body {
+  transition: background-color 0.15s ease-in 0.4s;
+}
+
+.toggle-theme {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-around;
+  margin: auto;
+  position: relative;
+  height: 50px;
+  width: 300px;
+}
+
+.toggle-theme input {
+  position: absolute;
+  height: 0;
+  width: 0;
+  opacity: 0;
+}
+
+.switch {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: var(--bg);
+  box-shadow: var(--inset);
+  border-radius: 50px;
+  transition: background-color 0.15s ease-in 0.4s, box-shadow 0.15s ease-in 0.4s;
+  user-select: none;
+  cursor: pointer;
+}
+
+.switch:before {
+  position: absolute;
+  content: "";
+  height: 40px;
+  width: 145px;
+  top: 5px;
+  left: 5px;
+  background-color: var(--surface);
+  box-shadow: var(--shadow);
+  border-radius: 40px;
+  transition: transform 0.3s, background-color 0.15s ease-in 0.4s,
+    box-shadow 0.15s ease-in 0.4s;
+}
+
+input:checked + .switch:before {
+  transform: translateX(145px);
+}
+
+.toggle-theme p {
+  color: var(--text);
+  transition: color 0.15s ease-in 0.4s;
+  cursor: pointer;
+  z-index: 1;
+}
+
+/* mi codigo */
 
 html {
   scroll-behavior: smooth;
   overflow: auto;
+  font-size: 16px;
 }
 
 body {
   font-family: "Poppins", sans-serif;
   font-weight: 300 !important;
-  background-color: var(--main-bg-color);
+  background-color: var(--surface);
   padding-left: 5vw;
   padding-right: 5vw;
   padding-top: 10vw;
   padding-bottom: 10vw;
-  color: #ffffff;
+  color: var(--text);
   margin: 0;
 }
 
@@ -37,13 +118,13 @@ a {
 }
 
 h1 {
-  font-weight: 400 !important;
-  font-size: 4.5rem;
+  font-weight: 600 !important;
+  font-size: 5rem;
   margin-bottom: 30px;
 }
 
 h2 {
-  font-weight: 500 !important;
+  font-weight: 400 !important;
   font-size: 4rem;
   margin-top: 0;
 }
@@ -53,7 +134,7 @@ h3 {
 }
 
 h4 {
-  font-weight: 400 !important;
+  font-weight: 300 !important;
 }
 
 button {
@@ -63,7 +144,7 @@ button {
   border-radius: 16px;
   width: 100%;
   height: 7vh;
-  font-size: 3rem;
+  font-size: 3.5rem;
   margin-top: 1vh;
 }
 
@@ -77,11 +158,16 @@ nav {
   width: 100%;
   left: 0 !important;
   height: 10vh;
+  font-size: 3rem;
 }
 
 nav ul {
   text-decoration: none;
-  padding-left: 25px;
+  padding-left: 5vw;
+  padding-right: 3vw;
+  font-size: 80px;
+  line-height: 0;
+  margin-top: 3vh;
 }
 
 nav ul li {
@@ -103,7 +189,7 @@ nav ul li {
   border-radius: 16px;
   width: 100%;
   height: 7vh;
-  margin-bottom: 1.5vh;
+  margin-bottom: 2.5vh;
 }
 
 ::placeholder {
@@ -135,6 +221,7 @@ form i {
   cursor: pointer;
   font-size: 50px;
   vertical-align: super;
+  opacity: 0.3;
 }
 
 form p {
@@ -145,20 +232,12 @@ form p {
 
 .tagline {
   position: fixed;
-  bottom: 40px !important;
+  bottom: 5vh;
   font-size: 14px;
   text-align: center;
   left: 50%;
   transform: translate(-50%, 0);
   min-width: 80vw;
-}
-
-.discover-hero {
-  top: 2vh;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 100%;
 }
 
 .splash {
@@ -167,40 +246,23 @@ form p {
   width: 100%;
 }
 
+/* Profile */
+
 .profile-header {
   display: flex;
   margin-bottom: 25px;
 }
 
-.playlist-title {
-  width: 100%;
-  border-top: 1px solid var(--form-text-color);
-  border-bottom: 1px solid var(--form-text-color);
+.profile-header h3 {
+  font-size: 3.5rem;
 }
 
-.playlists {
-  width: 100%;
-  margin: 0;
-}
-
-.playlist-item {
-  border-bottom: 1px solid var(--form-field-bg);
-  width: 100%;
-}
-
-.playlist-item i {
-  font-size: 30px;
-  margin-top: -10px;
-  cursor: pointer;
-}
-
-.playlist-item span {
-  float: right;
-  margin-top: -15px;
+.profile-header p {
+  font-size: 2.5rem;
 }
 
 .user-info {
-  margin-left: 10px;
+  margin-left: 4vw;
 }
 
 .user-info p {
@@ -211,24 +273,59 @@ form p {
   margin: 0;
 }
 
+.playlist-title {
+  width: 100%;
+  border-top: 1px solid var(--form-text-color);
+  border-bottom: 1px solid var(--form-text-color);
+  font-size: 2.5rem;
+}
+
+.playlists {
+  width: 100%;
+  margin: 0;
+}
+
+.playlists h4 {
+  font-size: 3.3rem;
+  text-align: center;
+}
+
+.playlist-item {
+  border-bottom: 1px solid var(--form-field-bg);
+  width: 100%;
+}
+
+.playlist-item i {
+  font-size: 4rem;
+  margin-top: -10px;
+  cursor: pointer;
+}
+
+.playlist-item span {
+  float: right;
+  margin-top: -15px;
+}
+
 .centered-block {
   text-align: center;
   margin-bottom: 10vh;
+  margin-top: 5vh;
 }
 
 .centered-block img {
   width: auto;
-  height: 30vh;
+  height: 33vh;
+  margin-bottom: 2vh;
 }
 
 .centered-block h2 {
   margin-bottom: 0px;
-  font-weight: 500;
+  font-size: 50px;
 }
 
 .centered-block p {
-  font-size: 2rem;
   margin-bottom: 3vh;
+  font-size: 34px;
 }
 
 .swipe-buttons {
@@ -249,6 +346,7 @@ form p {
 .conf-art-block ul li {
   list-style-type: none;
   text-decoration: none;
+  font-size: 2rem;
 }
 
 .art-list-item {
@@ -256,4 +354,18 @@ form p {
   padding-bottom: 3vh;
   border-top: 1px solid var(--form-text-color);
   border-bottom: 1px solid var(--form-text-color);
+}
+
+.art-list-item p {
+  font-size: 8rem;
+}
+
+.profile-picture img {
+  max-width: 25vw;
+}
+
+/* Animation profile */
+
+.error-smiley h1 {
+  font-size: 300px;
 }
