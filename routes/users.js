@@ -105,7 +105,11 @@ router.route("/profile")
 router.route("/edit-profile")
 .get(isLoggedIn, (req, res) => {
   const { name, email, avatarUrl } = req.session.loggedinUser;
-  res.render("edit-profile", { name, email, avatarUrl }); 
+  Playlist.find().populate("favouriteplaylists")
+  .then((playlistfound)=>{
+    res.render("edit-profile", { name, email, avatarUrl, playlistfound })
+  } )
+   
 });
 
 

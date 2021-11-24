@@ -9,44 +9,21 @@
         <p>Edit</p>
     </div>
 </div>
+
 <div class="playlists">
     <div class="playlist-title">
         <h4>Playlists</h4>
     </div>
+
     <div id="content">
+    
+    <div class="playlist-item">
+    {{#each playlistfound}}
+        <p>{{name}}</p>
+        <i class="bi bi-x" id="toggleDelete"></i>
+        
     </div>
-    {{#each playlist}}
-            <li class="art-list-item"><a href="/recomentation/{{this.id}}">{{this.name}}</a></li>
     {{/each}}
-    <div class="playlist-item">
-        <p>Playlist Name<span>
-        <i class="bi bi-x" id="toggleDelete"></i></span>
-        </p>
-    </div>
-    <div class="playlist-item">
-        <p>Playlist Name<span>
-        <i class="bi bi-x" id="toggleDelete"></i></span>
-        </p>
-    </div>
-    <div class="playlist-item">
-        <p>Playlist Name<span>
-        <i class="bi bi-x" id="toggleDelete"></i></span>
-        </p>
-    </div>
-    <div class="playlist-item">
-        <p>Playlist Name<span>
-        <i class="bi bi-x" id="toggleDelete"></i></span>
-        </p>
-    </div>
-    <div class="playlist-item">
-        <p>Playlist Name<span>
-        <i class="bi bi-x" id="toggleDelete"></i></span>
-        </p>
-    </div>
-    <div class="playlist-item">
-        <p>Playlist Name<span>
-        <i class="bi bi-x" id="toggleDelete"></i></span>
-        </p>
     </div>
 </div>
 
