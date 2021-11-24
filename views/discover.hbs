@@ -5,9 +5,9 @@
         <div>
                 <h2>Discover New Music</h2>
                 <p>Just type any artist you like and we will give you a list of tunes we think you may like</p>
-                <form action="/playlist/artist-confirmation/" method="get">
+                <form autocomplete="off" action="/playlist/artist-confirmation/" method="get">
                         <label for="artist"></label>
-                        <input required type="text" name="artist" placeholder="Choose an artist" class="form-fields"/>
+                        <input autocomplete="false" required type="text" name="artist" placeholder="Choose an artist" class="form-fields"/>
                         <br>
                         <button type="submit">Search</button>
                 </form>

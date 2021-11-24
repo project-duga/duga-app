@@ -6,7 +6,7 @@
 
 /* :root {
   --main-bg-color: #1b1e28;
-  --form-field-bg: #2c2f3e;
+  --form-field-bg: #F5F5F7;
   --form-text-color: #707790;
   --accent-color: #16a7ff;
 } */
@@ -16,7 +16,8 @@
   --bg: #e4e4e7;
   --text: #71717a;
   --form-text-color: #707790;
-  --accent-color: #16a7ff;
+  --form-field-bg: #f3f3f3;
+  --accent-color: #fd2254;
   --shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
   --inset: inset 0 0.125rem 0.25rem 0 rgba(0, 0, 0, 0.15);
 }
@@ -25,6 +26,8 @@
   --surface: #27272a;
   --bg: #18181b;
   --text: #a1a1aa;
+  --form-field-bg: #f5f5f714;
+  /* --accent-color: #16a7ff; */
   --shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.3);
   --shadow-inner: inset 0 0.125rem 0.25rem 0 rgba(0, 0, 0, 0.6);
 }
@@ -240,6 +243,16 @@ form p {
   min-width: 80vw;
 }
 
+.profile-tagline {
+  position: fixed;
+  bottom: 12vh;
+  font-size: 14px;
+  text-align: center;
+  left: 50%;
+  transform: translate(-50%, 0);
+  min-width: 80vw;
+}
+
 .splash {
   background-image: url("");
   bottom: 0px !important;
@@ -285,7 +298,7 @@ form p {
   margin: 0;
 }
 
-.playlists h4 {
+.playlists-profile h4 {
   font-size: 3.3rem;
   text-align: center;
 }
@@ -349,6 +362,13 @@ form p {
   font-size: 2rem;
 }
 
+.pic-button {
+  background-color: transparent;
+  color: var(--accent-color);
+  height: 0;
+  font-size: 2.5rem;
+}
+
 .art-list-item {
   padding-top: 3vh;
   padding-bottom: 3vh;
@@ -362,6 +382,23 @@ form p {
 
 .profile-picture img {
   max-width: 25vw;
+  border-radius: 16px;
+}
+
+.edit-profile-picture {
+  margin-bottom: 4vh;
+  margin-top: 4vh;
+}
+
+.edit-profile-picture img {
+  max-width: 40vw;
+  height: auto;
+  border-radius: 16px;
+  margin-bottom: 0;
+}
+
+.edit-profile {
+  margin-top: 1.5vh;
 }
 
 /* Animation profile */

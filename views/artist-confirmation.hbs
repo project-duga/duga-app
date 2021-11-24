@@ -1,16 +1,13 @@
 <div class="centered-block conf-art-block">
     <h2>Confirm Artist</h2>
-
     <div>
         <ul>
         {{#each artists}}
             <li class="art-list-item">
                 <form action="/playlist/create/{{this.id}}" method="POST">
-                    <button>
-                        {{this.name}}
-                    </button>
-                    </form>
-                    </li>
+                <button>{{this.name}}</button>
+                </form>
+            </li>
         {{/each}}
         </ul>
     </div>
@@ -24,11 +21,3 @@
     </form>
 </div>
 {{> navbar}}
-
-{{!-- <div>
-    {{#each artists}}
-        <div>
-            <a href="/playlist/{{this.id}}">{{this.name}}</a>
-        </div>
-    {{/each}}
-</div> --}}

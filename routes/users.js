@@ -92,8 +92,6 @@ router.get("/logout", (req, res) => {
   });
 });
 
-
-
 //Profile
 router.route("/profile")
 .get(isLoggedIn, (req, res) => {
@@ -101,7 +99,7 @@ router.route("/profile")
   res.render("profile", { name, email, avatarUrl }); 
 });
 
-//Profile
+//Edit Profile
 router.route("/edit-profile")
 .get(isLoggedIn, (req, res) => {
   const { name, email, avatarUrl } = req.session.loggedinUser;
