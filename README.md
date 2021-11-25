@@ -27,17 +27,28 @@ Search platform for music and creating multiple playlist of music related to the
 | **Method** | **Route**                          | **Description**                                              | Request  - Body                                          |
 | ---------- | ---------------------------------- | ------------------------------------------------------------ | -------------------------------------------------------- |
 | `GET`      | `/`                                | Main page route.  Renders home `index` view.                 |                                                          |
-| `GET`      | `/login`                           | Renders `login` form view.                                   |                                                          |
-| `POST`     | `/login`                           | Sends Login form data to the server.                         | { email, password }                                      |
-| `GET`      | `/signup`                          | Renders `signup` form view.                                  |                                                          |
-| `POST`     | `/signup`                          | Sends Sign Up info to the server and creates user in the DB. | {  email, password  }                                    |
-| `GET`      | `/private/edit-profile`            | Private route. Renders `edit-profile` form view.             |                                                          |
-| `PUT`      | `/private/edit-profile`            | Private route. Sends edit-profile info to server and updates user in DB. | { email, password, [firstName], [lastName], [imageUrl] } |
-| `GET`      | `/private/favorites`               | Private route. Render the `favorites` view.                  |                                                          |
-| `POST`     | `/private/favorites/`              | Private route. Adds a new favorite for the current user.     | { name, cuisine, city, }                                 |
-| `DELETE`   | `/private/favorites/:restaurantId` | Private route. Deletes the existing favorite from the current user. |                                                          |
-| `GET`      | `/restaurants`                     | Renders `restaurant-list` view.                              |                                                          |
-| `GET`      | `/restaurants/details/:id`         | Renders `restaurant-details` view for the particular restaurant. |                                                          |
+
+| `GET`      | `/users/login`                           | Renders `login` view. view.                                   |                                                          |
+| `POST`     | `/users/login`                           | Sends Login form data to the server.                         | { email, password }                                      |
+| `GET`      | `/users/signup`                          | Renders `signup-form` view. view.                                  |                                                          |
+| `POST`     | `/users/signup`                          | Sends Sign Up info to the server and creates user in the DB. | {  name, email, password  }                                    |
+| `GET`      | `/users/logout`                          |  Deletes session and redirects to `signup-form`              |                                                          |
+| `GET`      | `/users/profile`                       |  Renders {avatarUrl, name , email} to the server |
+| `POST`      | `/users/profile/:id`               | Deletes playlist on the server and updates playlist in DB redirectos to `/users/profile`.                |                                                          |
+| `GET`     | `/users/edit-profile/`              | renders  `edit-profile` view.|                                 |
+| `POST`   | `/users/edit-profile/` | edits users to the DB and redirects to  `/users/profile` |                                                          |
+| `GET`      | `/playlist/artist-confirmation`                     | Calls Api and renders `artist-confirmation` view.                             |                                                          |
+| `GET`      | `/playlist/discover`         | Renders `discover` view |                                                          |
+| `POST`      | `/playlist/create/:id`         | Creates a Playlist and updates User  in the database. |                                                          |
+| `GET`      | `/playlist/swipe/`         | Renders `swipe` view while calling the Api to display a loop that shows up multiple songs. |                                                          |
+| `GET`      | `/playlist/create-list/`         | Renders `swipe` view. |                                                          |
+| `POST`      | `/playlist/create-list/`        |  Updates playlist and stores it in on the DB. Redirects to `/playlist/playlist`. |                                                          |
+| `GET`      | `/playlist/playlist/`         | Renders `playlist` view. Displays Playlist information called from the Api |                                                          |
+
+
+
+
+
 
 ## Models 
 
@@ -46,12 +57,12 @@ Search platform for music and creating multiple playlist of music related to the
 
 ```javascript
 {
-  "image": { type: String, default: '../images/avatar.png' },
-  "name": String, 
+  "avatarUrl": { type: String, default: '../images/avatar.png' },
+  "name": String, required
   "lastname": String,
-  "email": String, unique 
-  "password": String,
-  "listplaylist": [{type:Schema.Types.ObjectId, ref: 'User' }] 
+  "email": String, unique, required
+  "password": String, required
+  "listplaylist": [{type:Schema.Types.ObjectId, ref: 'Playlist', default: [] }] 
 }
 ```
   
@@ -60,9 +71,10 @@ Search platform for music and creating multiple playlist of music related to the
 
 ```javascript
 {
-  "image": { type: String, default: '../images/avatar.png' },
-  "name": String, 
-  "tracks": [{type:String}]
+  "imgUrl": { type: String, default: '../images/avatar.png' },
+  "name": String, default:"untitled"
+  "tracks": [{type:String, default:[]}]
+  "blacklist": [{type:String, default:[]}]
 }
 ```
 

@@ -31,7 +31,8 @@ router.route("/discover").get(isLoggedIn, (req, res) => {
   res.render("discover", { name });
 });
 
-router.route("/create/:id").post(isLoggedIn, async (req, res) => {
+router.route("/create/:id")
+.post(isLoggedIn, async (req, res) => {
   try {
     const artistId = req.params.id;
     const newPlaylist = await Playlist.create({ name: "untitled" });
