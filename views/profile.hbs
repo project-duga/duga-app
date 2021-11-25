@@ -18,14 +18,14 @@
     <div class="playlist-item playlists-list">
         <a href="/playlist/playlist/?name={{name}}&playlistId={{_id}}"><p>{{name}}</p></a>
         <form action="/users/profile/{{_id}}/" method="POST">
-            <button type="submit"><span><i class="bi bi-trash-fill" id="toggleDelete"></i></span></button>
+            <button type="submit"><span><i class="bi bi-trash" id="toggleDelete"></i></span></button>
         </form>
     </div>
     {{/each}}
 </div>
 <nav>
     <ul>
-        <li class="nav-home"><a href="/playlist/discover"><i class="bi bi-house"></i></a></li>
+        <li class="nav-home"><a href="/playlist/discover"><i class="bi bi-disc"></i></a></li>
         <li class="nav-profile"><a href="/users/profile"><i class="bi bi-person-fill"></i></a></li>
     </ul>
 </nav>
