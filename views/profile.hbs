@@ -24,7 +24,7 @@
     
     <div class="playlist-item">
     {{#each foundUser.favouriteplaylists}}
-        <p>{{name}}</p>
+       <a href="/playlist/playlist/?name={{name}}&playlistId={{_id}}"><p>{{name}}</p></a>
         <i class="bi bi-x" id="toggleDelete"></i>
     </div>
     {{/each}}

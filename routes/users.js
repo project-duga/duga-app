@@ -94,23 +94,20 @@ router.get("/logout", (req, res) => {
 });
 
 //Profile
-router.route("/profile").get(isLoggedIn, async(req, res) => {
+router.route("/profile")
+.get(isLoggedIn, async(req, res) => {
   try{
     const id = req.session.loggedinUser._id
-
     const foundUser =  await User.findById(id).populate("favouriteplaylists")
-    console.log("line103",foundUser)
+    console.log("line103",foundUser.favouriteplaylists)
     res.render("profile", {
       foundUser
-      
     });
+    
   }catch(err){
     console.log(err)
   }
  
-  // const{id} = req.params;
-  // const foundMovie = await Movie.findById(id).populate("cast")
-  // res.render("movies/movie-details", {movie:foundMovie});
   
 });
 
