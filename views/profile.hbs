@@ -16,7 +16,10 @@
     </div>
     {{#each foundUser.favouriteplaylists}}
     <div class="playlist-item">
-        <p>{{name}}<span><i class="bi bi-x" id="toggleDelete"></i></span></p>
+        <a href="/playlist/playlist/?name={{name}}&playlistId={{_id}}"><p>{{name}}</p></a>
+        <form action="/users/profile/{{_id}}/" method="POST">
+        <button type="submit"><span><i class="bi bi-x" id="toggleDelete"></i></span></button>
+        </form>
     </div>
     {{/each}}
 </div>

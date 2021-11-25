@@ -94,7 +94,8 @@ router.get("/logout", (req, res) => {
 });
 
 //Profile
-router.route("/profile").get(isLoggedIn, async(req, res) => {
+router.route("/profile")
+.get(isLoggedIn, async(req, res) => {
   try{
     const id = req.session.loggedinUser._id
     const {avatarUrl} = req.session.loggedinUser
@@ -103,13 +104,11 @@ router.route("/profile").get(isLoggedIn, async(req, res) => {
       foundUser,
       avatarUrl
     });
+    
   }catch(err){
     console.log(err)
   }
  
-  // const{id} = req.params;
-  // const foundMovie = await Movie.findById(id).populate("cast")
-  // res.render("movies/movie-details", {movie:foundMovie});
   
 });
 
