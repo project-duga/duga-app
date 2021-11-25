@@ -108,7 +108,7 @@
     padding-left: 5vw;
     padding-right: 5vw;
     padding-top: 10vw;
-    padding-bottom: 10vw;
+    padding-bottom: 10vh;
     color: var(--text);
     margin: 0;
   }
@@ -139,7 +139,7 @@
   }
 
   h4 {
-    font-weight: 300 !important;
+    font-weight: 300;
   }
 
   button {
@@ -320,6 +320,7 @@
 
   .playlist-title h4 {
     font-size: 55px;
+    font-weight: 400;
   }
 
   .playlists {
@@ -342,6 +343,10 @@
 
   .playlists-list {
     justify-content: space-between;
+  }
+
+  .playlists-list p {
+    font-size: 45px;
   }
 
   .playlists-list a {
@@ -374,7 +379,7 @@
 
   .playlist-item i {
     font-size: 4rem;
-    margin-top: -10px;
+    line-height: 2;
     cursor: pointer;
   }
 
@@ -385,7 +390,7 @@
 
   .centered-block {
     text-align: center;
-    margin-bottom: 10vh;
+    margin-bottom: 4vh;
     margin-top: 1vh;
   }
 
@@ -440,8 +445,9 @@
 
   .art-list-item button {
     background-color: var(--surface);
-    border: 2px solid var(--accent-color);
+    /* border: 2px solid var(--accent-color); */
     color: var(--accent-color);
+    height: 4vh;
   }
 
   .art-list-item p {
