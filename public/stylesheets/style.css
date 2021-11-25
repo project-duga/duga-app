@@ -340,13 +340,36 @@
     padding-bottom: 2vh;
   }
 
+  .playlists-list {
+    justify-content: space-between;
+  }
+
+  .playlists-list a {
+    text-decoration: none;
+    color: var(--text);
+  }
+
+  .songs-list p {
+    margin-left: 3vw;
+  }
+
   .playlist-item img {
     width: 20vw;
     border-radius: 16px;
   }
 
   .playlist-item p {
-    margin-left: 3vw;
+  }
+
+  .playlist-item form i {
+    opacity: 1;
+  }
+
+  .playlist-item button {
+    background-color: transparent;
+    color: var(--accent-color);
+    width: 100px;
+    margin-top: 0px;
   }
 
   .playlist-item i {
