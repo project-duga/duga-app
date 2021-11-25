@@ -124,27 +124,9 @@ router
   });
 
 // //Playlist
-// router.route("/playlist").get(isLoggedIn, (req, res) => {
-//   const playlistName = req.query.name;
-//   const playlistId = req.query.playlistId;
-//   Playlist.findById(playlistId)
-//     .then((playlist) => {
-//       const arrTracks = playlist.tracks;
-//       const arrInfoTracks = arrTracks.map(async(el) => {
-//         Api.getTrack(el)
-//           .then((data) => {
-//               const trackName = data.body.name;
-//               const trackImg = data.body.preview_url;
-//               const trackArtist = data.body.artists[0].name;
-//           })
-//           .catch((err) => console.log(err));
-//           return package;
-//       });
-//     })
-//    res.render("playlist", { playlistName: playlistName });
-// });
 
-router.route("/playlist").get(isLoggedIn, async (req, res) => {
+router.route("/playlist")
+.get(isLoggedIn, async (req, res) => {
   try {
     const playlistName = req.query.name;
     const playlistId = req.query.playlistId;
@@ -172,3 +154,10 @@ router.route("/playlist").get(isLoggedIn, async (req, res) => {
 });
 
 module.exports = router;
+
+
+
+
+
+
+
