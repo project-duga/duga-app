@@ -6,51 +6,27 @@
     <div class="user-info">
         <h3>{{name}}</h3>
         <p>{{email}}</p>
-        <p>Edit</p>
+        <p><a href="/users/edit-profile/">Edit</a></p>
     </div>
 </div>
 <div class="playlists">
     <div class="playlist-title">
         <h4>Playlists</h4>
     </div>
-    <div id="content">
-    </div>
     {{#each playlist}}
-            <li class="art-list-item"><a href="/recomentation/{{this.id}}">{{this.name}}</a></li>
+    <div class="playlist-item">
+        <p>{{playlist.name}}<span>
+        <i class="bi bi-x" id="toggleDelete"></i></span>
+        </p>
+    </div>
     {{/each}}
-    <div class="playlist-item">
-        <p>Playlist Name<span>
-        <i class="bi bi-x" id="toggleDelete"></i></span>
-        </p>
-    </div>
-    <div class="playlist-item">
-        <p>Playlist Name<span>
-        <i class="bi bi-x" id="toggleDelete"></i></span>
-        </p>
-    </div>
-    <div class="playlist-item">
-        <p>Playlist Name<span>
-        <i class="bi bi-x" id="toggleDelete"></i></span>
-        </p>
-    </div>
-    <div class="playlist-item">
-        <p>Playlist Name<span>
-        <i class="bi bi-x" id="toggleDelete"></i></span>
-        </p>
-    </div>
-    <div class="playlist-item">
-        <p>Playlist Name<span>
-        <i class="bi bi-x" id="toggleDelete"></i></span>
-        </p>
-    </div>
-    <div class="playlist-item">
-        <p>Playlist Name<span>
-        <i class="bi bi-x" id="toggleDelete"></i></span>
-        </p>
-    </div>
 </div>
-
-{{> navbar}}
+<nav>
+    <ul>
+        <li class="nav-home"><a href="/playlist/discover"><i class="bi bi-house"></i></a></li>
+        <li class="nav-profile"><a href="/users/profile"><i class="bi bi-person-fill"></i></a></li>
+    </ul>
+</nav>
 
 
 

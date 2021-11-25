@@ -92,8 +92,6 @@ router.get("/logout", (req, res) => {
   });
 });
 
-
-
 //Profile
 router.route("/profile")
 .get(isLoggedIn, (req, res) => {
