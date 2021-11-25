@@ -4,35 +4,24 @@
         <img src="{{avatarUrl}}">
     </div> 
     <div class="user-info">
-
         <h3>{{foundUser.name}}</h3>
         <p>{{foundUser.email}}</p>
         <p><a href="/users/edit-profile/">Edit</a></p>
         <p><a href="/users/logout/">Logout</a></p>
-    
-
     </div>
 </div>
-
 <div class="playlists">
     <div class="playlist-title">
         <h4>Playlists</h4>
     </div>
-
-
-    <div id="content">
-    
-    <div class="playlist-item">
     {{#each foundUser.favouriteplaylists}}
-       <a href="/playlist/playlist/?name={{name}}&playlistId={{_id}}"><p>{{name}}</p></a>
-       <form action="/users/profile/{{_id}}/" method="POST">
-       <button type="submit">Delete</button>
-       </form>
-       {{!-- <i class="bi bi-x" id="toggleDelete"></i> --}}
+    <div class="playlist-item">
+        <a href="/playlist/playlist/?name={{name}}&playlistId={{_id}}"><p>{{name}}</p></a>
+        <form action="/users/profile/{{_id}}/" method="POST">
+        <button type="submit"><span><i class="bi bi-x" id="toggleDelete"></i></span></button>
+        </form>
     </div>
     {{/each}}
-
-
 </div>
 <nav>
     <ul>
