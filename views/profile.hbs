@@ -4,8 +4,8 @@
         <img src="{{avatarUrl}}">
     </div> 
     <div class="user-info">
-        <h3>{{name}}</h3>
-        <p>{{email}}</p>
+        <h3>{{foundUser.name}}</h3>
+        <p>{{foundUser.email}}</p>
         <p>Edit</p>
     </div>
 </div>
@@ -18,10 +18,9 @@
     <div id="content">
     
     <div class="playlist-item">
-    {{#each playlistfound}}
+    {{#each foundUser.favouriteplaylists}}
         <p>{{name}}</p>
         <i class="bi bi-x" id="toggleDelete"></i>
-        
     </div>
     {{/each}}
     </div>
