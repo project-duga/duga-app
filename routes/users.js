@@ -94,21 +94,26 @@ router.get("/logout", (req, res) => {
 });
 
 //Profile
-router.route("/profile")
-.get(isLoggedIn, async(req, res) => {
-  try{
-    const id = req.session.loggedinUser._id
-    const foundUser =  await User.findById(id).populate("favouriteplaylists")
-    console.log("line103",foundUser.favouriteplaylists)
+router.route("/profile").get(isLoggedIn, async (req, res) => {
+  try {
+    const id = req.session.loggedinUser._id;
+    const foundUser = await User.findById(id).populate("favouriteplaylists");
     res.render("profile", {
-      foundUser
+      foundUser,
     });
-    
-  }catch(err){
-    console.log(err)
+  } catch (err) {
+    console.log(err);
   }
- 
-  
+});
+router.post("/profile/:id", async (req, res) => {
+  try {
+    const id = req.params.id;
+    const deletePlaylist = await Playlist.findByIdAndRemove(id);
+
+    res.redirect("/users/profile");
+  } catch (err) {
+    console.log(err);
+  }
 });
 
 //Edit Profile
