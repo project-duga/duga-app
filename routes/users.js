@@ -98,10 +98,11 @@ router.route("/profile")
 .get(isLoggedIn, async(req, res) => {
   try{
     const id = req.session.loggedinUser._id
+    const {avatarUrl} = req.session.loggedinUser
     const foundUser =  await User.findById(id).populate("favouriteplaylists")
-    console.log("line103",foundUser.favouriteplaylists)
     res.render("profile", {
-      foundUser
+      foundUser,
+      avatarUrl
     });
     
   }catch(err){
@@ -112,13 +113,30 @@ router.route("/profile")
 });
 
 //Edit Profile
-router.route("/edit-profile").get(isLoggedIn, async (req, res) => {
-  const { name, email, avatarUrl } = req.session.loggedinUser;
-  // Playlist.find().populate("favouriteplaylists");
+router.route("/edit-profile")
+.get(isLoggedIn, async (req, res) => {
+  try{
+    const { name, email, avatarUrl } = req.session.loggedinUser;
+    const userId = req.session.loggedinUser._id;
+    const userIdDb = await User.findById(userId);
+    const currentName = userIdDb.name
 
-  // const usersPlaylists  = await Users.findById()
+    res.render("edit-profile", { name, email, avatarUrl, currentName });
+  } catch (error){
+    console.log(error)
+  }
+})
+.post(isLoggedIn, async (req, res) => {
+  try{
+    const userId = req.session.loggedinUser._id;
+    const newName = req.body.name;
+    await User.findByIdAndUpdate(userId, {name: newName}, { new:true })
+    res.redirect("profile");
 
-  res.render("edit-profile", { name, email, avatarUrl });
+  } catch (error){
+    console.log(error)
+  }
+  
 });
 
 module.exports = router;
