@@ -5,7 +5,7 @@ const playlistSchema = new Schema({
     imgUrl: { type: String, default: '../images/avatar.png' },
     name: {type:String, default:"untitled"}, 
     tracks: [{type:String, default:[]}],
-    blacklist: [{type:String, default:[]}]
+    blacklist: [{type:String, default:[]}],
 
 });
 

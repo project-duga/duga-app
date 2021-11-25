@@ -80,6 +80,7 @@ router.get("/swipe", isLoggedIn, async (req, res) => {
 
     if (currentPlaylist.tracks.length < 5) {
       let track;
+
       do {
         track = await Api.getRecommendations({
           seed_artists: artistId,
@@ -94,6 +95,7 @@ router.get("/swipe", isLoggedIn, async (req, res) => {
         track: track.body.tracks[0],
         artist: artistId,
         playlist: playlistId,
+        preview: track.body.tracks[0].preview_url,
       });
     } else {
       res.redirect(`/playlist/create-list/?playlistId=${playlistId}`);
@@ -103,7 +105,7 @@ router.get("/swipe", isLoggedIn, async (req, res) => {
   }
 });
 
-//GenerateList
+//Create list
 router
   .route("/create-list")
   .get(isLoggedIn, async (req, res) => {
@@ -125,8 +127,7 @@ router
 
 // //Playlist
 
-router.route("/playlist")
-.get(isLoggedIn, async (req, res) => {
+router.route("/playlist").get(isLoggedIn, async (req, res) => {
   try {
     const playlistName = req.query.name;
     const playlistId = req.query.playlistId;
@@ -135,29 +136,26 @@ router.route("/playlist")
     const arrInfoTracks = await Promise.all(
       arrTracks.map(async (el) => {
         try {
-          const trackInfo = await Api.getTrack(el)
+          const trackInfo = await Api.getTrack(el);
+
           const trackObject = {
             name: trackInfo.body.name,
             image: trackInfo.body.album.images[0].url,
-            artist: trackInfo.body.artists[0].name
-          }
+            artist: trackInfo.body.artists[0].name,
+          };
           return trackObject;
         } catch (err) {
           console.log(err);
         }
       })
     );
-    res.render("playlist", { playlistName: playlistName, playlistTrackInfo: arrInfoTracks });
+    res.render("playlist", {
+      playlistName: playlistName,
+      playlistTrackInfo: arrInfoTracks,
+    });
   } catch (err) {
     console.log(err);
   }
 });
 
 module.exports = router;
-
-
-
-
-
-
-

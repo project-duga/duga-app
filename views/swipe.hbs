@@ -9,6 +9,11 @@
         </div>
         <h2>{{track.name}}</h2>
         <p>{{ track.artists.0.name }}</p>
+        {{!-- <p>{{preview}}</p> --}}
+        <audio controls autoplay>
+            <source src="{{preview}}" type="audio/mpeg">
+        </audio>
+        
         <div class="swipe-buttons">
                    
         <a href="/playlist/swipe/?artist={{artist}}&playlist={{playlist}}&operation=NO&track={{track.id}}"><button class="yesno"><i class="bi bi-x-circle"></i></button></a>
