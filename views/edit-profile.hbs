@@ -13,9 +13,9 @@
         </form>
         </div>
     </div>
-    <form autocomplete="off" action="/users/signup" method="post">
+    <form autocomplete="off" action="/users/edit-profile" method="post">
        <label for="name"></label>
-       <input autocomplete="false" required type="text" name="name" placeholder="New Username" class="form-fields"/>
+       <input autocomplete="false" required type="text" name="name" value="{{currentName}}" class="form-fields"/>
        <button type="submit">Change</button>
        <p class="edit-profile ">This can be your own name or a nickname. Is how you will appear on Duga.</p>
     </form>
