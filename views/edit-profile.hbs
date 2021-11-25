@@ -1,15 +1,15 @@
-<div class="centered-block">
+<div class="goback">
+    <p><a href="/users/profile"><i class="bi bi-x"></i></a></p>
+</div>
+<div class="centered-block edit-profile-block">
     <div>
-        <p>Go Back</p>
-    </div>
-    <div>
-        <h2>Settings</h2>
+        <h2>Edit profile</h2>
     </div>
     <div class="edit-profile-header"> 
         <div class="edit-profile-picture">
             <img src="{{avatarUrl}}">
             <form action="/users/signup" method="post">
-            <button class="pic-button" type="submit">Change picture</button>
+            <button class="pic-button" type="submit">Update picture</button>
         </form>
         </div>
     </div>
@@ -19,14 +19,19 @@
        <button type="submit">Change</button>
        <p class="edit-profile ">This can be your own name or a nickname. Is how you will appear on Duga.</p>
     </form>
-        <label class="toggle-theme">
+        {{!-- <label class="toggle-theme">
         <input type="checkbox" />
         <span class="switch"></span>
         <p></p>
         <p></p>
-        </label>
+        </label> --}}
     <div class="profile-tagline">
         <p>Version 1.0</p>
     </div>
 </div>
-{{> navbar}}
+<nav>
+    <ul>
+        <li class="nav-home"><a href="/playlist/discover"><i class="bi bi-house"></i></a></li>
+        <li class="nav-profile"><a href="/users/profile"><i class="bi bi-person-fill"></i></a></li>
+    </ul>
+</nav>

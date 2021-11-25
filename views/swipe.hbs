@@ -1,5 +1,5 @@
 <div class="centered-block">
-    <h3>Now playing</h3>
+    <h2>Now playing</h2>
 
     <div class="tune">
         {{!-- <img src="https://via.placeholder.com/322"> --}}
@@ -11,9 +11,9 @@
         <p>{{ track.artists.0.name }}</p>
         <div class="swipe-buttons">
                    
-        <a href="/playlist/swipe/?artist={{artist}}&playlist={{playlist}}&operation=NO&track={{track.id}}"><button>NO</button></a>
+        <a href="/playlist/swipe/?artist={{artist}}&playlist={{playlist}}&operation=NO&track={{track.id}}"><button class="yesno"><i class="bi bi-x-circle"></i></button></a>
                    
-        <a href="/playlist/swipe/?artist={{artist}}&playlist={{playlist}}&operation=YES&track={{track.id}}"><button>YES</button></a>
+        <a href="/playlist/swipe/?artist={{artist}}&playlist={{playlist}}&operation=YES&track={{track.id}}"><button class="yesno"><i class="bi bi-check-circle"></i></button></a>
 
             {{!-- <a href=""><i class="bi bi-x-circle"></i></a>
             <a href=""><i class="bi bi-check-circle"></i></a> --}}

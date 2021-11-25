@@ -1,35 +1,12 @@
 <div class="playlists-profile">
     <h4>Playlist</h4>
+    {{#each playlist}}
     <div class="playlist-item">
         <img src="/public/images/splash.png">
-        <p>Song Name<span>
+        <p>{{track.name}}<span>
         <i class="bi bi-play-fill" id="togglePlay"></i>
         <i class="bi bi-x" id="toggleDelete"></i></span></p>
     </div>
-    <div class="playlist-item">
-        <img src="/public/images/splash.png">
-        <p>Song Name<span>
-        <i class="bi bi-play-fill" id="togglePlay"></i>
-        <i class="bi bi-x" id="toggleDelete"></i></span></p>
-    </div>
-    <div class="playlist-item">
-        <img src="/public/images/splash.png">
-        <p>Song Name<span>
-        <i class="bi bi-play-fill" id="togglePlay"></i>
-        <i class="bi bi-x" id="toggleDelete"></i></span></p>
-    </div>
-    <div class="playlist-item">
-        <img src="/public/images/splash.png">
-        <p>Song Name<span>
-        <i class="bi bi-play-fill" id="togglePlay"></i>
-        <i class="bi bi-x" id="toggleDelete"></i></span></p>
-    </div>
-    <div class="playlist-item">
-        <img src="/public/images/splash.png">
-        <p>Song Name<span>
-        <i class="bi bi-play-fill" id="togglePlay"></i>
-        <i class="bi bi-x" id="toggleDelete"></i></span></p>
-    </div>
+    {{/each}}
 </div>
-
 {{> navbar}}
