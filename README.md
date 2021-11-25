@@ -27,7 +27,6 @@ Search platform for music and creating multiple playlist of music related to the
 | **Method** | **Route**                          | **Description**                                              | Request  - Body                                          |
 | ---------- | ---------------------------------- | ------------------------------------------------------------ | -------------------------------------------------------- |
 | `GET`      | `/`                                | Main page route.  Renders home `index` view.                 |                                                          |
-
 | `GET`      | `/users/login`                           | Renders `login` view. view.                                   |                                                          |
 | `POST`     | `/users/login`                           | Sends Login form data to the server.                         | { email, password }                                      |
 | `GET`      | `/users/signup`                          | Renders `signup-form` view. view.                                  |                                                          |
