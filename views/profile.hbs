@@ -4,23 +4,32 @@
         <img src="{{avatarUrl}}">
     </div> 
     <div class="user-info">
-        <h3>{{name}}</h3>
-        <p>{{email}}</p>
+
+        <h3>{{foundUser.name}}</h3>
+        <p>{{foundUser.email}}</p>
         <p><a href="/users/edit-profile/">Edit</a></p>
         <p><a href="/users/logout/">Logout</a></p>
+    
+
     </div>
 </div>
+
 <div class="playlists">
     <div class="playlist-title">
         <h4>Playlists</h4>
     </div>
-    {{#each playlist}}
+
+
+    <div id="content">
+    
     <div class="playlist-item">
-        <p>{{playlist.name}}</p>
+    {{#each foundUser.favouriteplaylists}}
+        <p>{{name}}</p>
         <i class="bi bi-x" id="toggleDelete"></i>
-        </p>
     </div>
     {{/each}}
+
+
 </div>
 <nav>
     <ul>

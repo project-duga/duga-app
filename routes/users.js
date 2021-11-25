@@ -2,6 +2,7 @@ var express = require("express");
 var router = express.Router();
 const bcrypt = require("bcrypt");
 const User = require("../models/User.model");
+const Playlist = require("../models/Playlist.model");
 
 const isLoggedIn = require("./../middleware/isLoggedIn");
 const isNotLoggedIn = require("../middleware/isNotLoggedIn");
@@ -93,18 +94,34 @@ router.get("/logout", (req, res) => {
 });
 
 //Profile
-router.route("/profile")
-.get(isLoggedIn, (req, res) => {
-  const { name, email, avatarUrl } = req.session.loggedinUser;
-  res.render("profile", { name, email, avatarUrl }); 
+router.route("/profile").get(isLoggedIn, async(req, res) => {
+  try{
+    const id = req.session.loggedinUser._id
+
+    const foundUser =  await User.findById(id).populate("favouriteplaylists")
+    console.log("line103",foundUser)
+    res.render("profile", {
+      foundUser
+      
+    });
+  }catch(err){
+    console.log(err)
+  }
+ 
+  // const{id} = req.params;
+  // const foundMovie = await Movie.findById(id).populate("cast")
+  // res.render("movies/movie-details", {movie:foundMovie});
+  
 });
 
 //Edit Profile
-router.route("/edit-profile")
-.get(isLoggedIn, (req, res) => {
+router.route("/edit-profile").get(isLoggedIn, async (req, res) => {
   const { name, email, avatarUrl } = req.session.loggedinUser;
-  res.render("edit-profile", { name, email, avatarUrl }); 
-});
+  // Playlist.find().populate("favouriteplaylists");
 
+  // const usersPlaylists  = await Users.findById()
+
+  res.render("edit-profile", { name, email, avatarUrl });
+});
 
 module.exports = router;
