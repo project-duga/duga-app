@@ -1,16 +1,37 @@
-<div class="centered-block">
-    <label class="toggle-theme">
+<div class="goback">
+    <p><a href="/users/profile"><i class="bi bi-x"></i></a></p>
+</div>
+<div class="centered-block edit-profile-block">
+    <div>
+        <h2>Edit profile</h2>
+    </div>
+    <div class="edit-profile-header"> 
+        <div class="edit-profile-picture">
+            <img src="{{avatarUrl}}">
+            <form action="/users/signup" method="post">
+            <button class="pic-button" type="submit">Update picture</button>
+        </form>
+        </div>
+    </div>
+    <form autocomplete="off" action="/users/signup" method="post">
+       <label for="name"></label>
+       <input autocomplete="false" required type="text" name="name" placeholder="New Username" class="form-fields"/>
+       <button type="submit">Change</button>
+       <p class="edit-profile ">This can be your own name or a nickname. Is how you will appear on Duga.</p>
+    </form>
+        {{!-- <label class="toggle-theme">
         <input type="checkbox" />
         <span class="switch"></span>
-        <p>Light</p>
-        <p>Dark</p>
-    </label>
-     <div>
-        <h2>Settings</h2>
-        <p>Just type any artist you like and we will give you a list of tunes we think you may like</p>
-    </div>
-    <div class="tagline">
+        <p></p>
+        <p></p>
+        </label> --}}
+    <div class="profile-tagline">
         <p>Version 1.0</p>
     </div>
 </div>
-{{> navbar}}
+<nav>
+    <ul>
+        <li class="nav-home"><a href="/playlist/discover"><i class="bi bi-house"></i></a></li>
+        <li class="nav-profile"><a href="/users/profile"><i class="bi bi-person-fill"></i></a></li>
+    </ul>
+</nav>

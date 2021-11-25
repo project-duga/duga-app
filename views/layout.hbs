@@ -11,7 +11,6 @@
       function showPass(){
         const togglePassword = document.querySelector('#togglePassword');
         const password = document.querySelector('#id_password');
-        console.log("showPass")
         // toggle the type attribute
         const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
         password.setAttribute('type', type);
@@ -29,8 +28,12 @@
         }
       }
 
-      toggle.addEventListener('change', toggleTheme); 
+      toggle.addEventListener('change', toggleTheme);
 
+      // use axios to send to a route that records teh eference on the cookie.
+      // for example axios.post("/set-theme/?t=dark")
+      // in the backhand you recieve the route and set req.cookie
+      
     </script>
   </body>
 </html>

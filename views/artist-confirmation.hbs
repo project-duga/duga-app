@@ -1,21 +1,18 @@
 <div class="centered-block conf-art-block">
     <h2>Confirm Artist</h2>
-
     <div>
         <ul>
         {{#each artists}}
             <li class="art-list-item">
                 <form action="/playlist/create/{{this.id}}" method="POST">
-                    <button>
-                        {{this.name}}
-                    </button>
-                    </form>
-                    </li>
+                <button>{{this.name}}</button>
+                </form>
+            </li>
         {{/each}}
         </ul>
     </div>
 
-    <h3>Not what you are looking for? Try again</h3>
+    <h2>Not what you are looking for?<br>Try again</h2>
     <form action="/playlist/artist-confirmation/" method="get">
                 <label for="artist"></label>
                 <input required type="text" name="artist" placeholder="Search again" class="form-fields"/>
@@ -24,11 +21,3 @@
     </form>
 </div>
 {{> navbar}}
-
-{{!-- <div>
-    {{#each artists}}
-        <div>
-            <a href="/playlist/{{this.id}}">{{this.name}}</a>
-        </div>
-    {{/each}}
-</div> --}}

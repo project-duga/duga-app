@@ -1,17 +1,17 @@
 <div>
        <h2>Create New Account</h2>
 
-       <form action="/users/signup" method="post">
+       <form autocomplete="off" action="/users/signup" method="post">
 
        <label for="name"></label>
-       <input required type="text" name="name" placeholder="Username" class="form-fields"/>
+       <input autocomplete="false" required type="text" name="name" placeholder="Username" class="form-fields"/>
 
        <label for="email"></label>
-       <input required type="email" name="email" placeholder="Email Address" class="form-fields"/>
+       <input autocomplete="false" required type="email" name="email" placeholder="Email Address" class="form-fields"/>
 
        <p>
        <label for="password"></label>
-       <input required type="password" name="password" autocomplete="current-password" placeholder="Password" class="form-fields" id="id_password">
+       <input autocomplete="false" required type="password" name="password" autocomplete="current-password" placeholder="Password" class="form-fields" id="id_password">
        <i class="bi bi-eye-slash" id="togglePassword" onclick="showPass()"></i>
         </p>
 
