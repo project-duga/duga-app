@@ -333,8 +333,20 @@
   }
 
   .playlist-item {
-    border-bottom: 1px solid var(--form-field-bg);
+    display: inline-flex;
+    border-bottom: 1px solid var(--form-text-color);
     width: 100%;
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+  }
+
+  .playlist-item img {
+    width: 20vw;
+    border-radius: 16px;
+  }
+
+  .playlist-item p {
+    margin-left: 3vw;
   }
 
   .playlist-item i {
