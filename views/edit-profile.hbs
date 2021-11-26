@@ -1,5 +1,5 @@
 <div class="goback">
-    <p><a href="/users/profile"><i class="bi bi-x"></i></a></p>
+    <p><a href="/users/profile"><i class="bi bi-arrow-left-short"></i></a></p>
 </div>
 <div class="centered-block edit-profile-block">
     <div>
@@ -16,15 +16,15 @@
     <form autocomplete="off" action="/users/edit-profile" method="post">
        <label for="name"></label>
        <input autocomplete="false" required type="text" name="name" value="{{currentName}}" class="form-fields"/>
-       <button type="submit">Change</button>
+       <button type="submit">Change Name</button>
        <p class="edit-profile ">This can be your own name or a nickname. Is how you will appear on Duga.</p>
     </form>
-        {{!-- <label class="toggle-theme">
+        <label class="toggle-theme">
         <input type="checkbox" />
         <span class="switch"></span>
         <p></p>
         <p></p>
-        </label> --}}
+        </label>
     <div class="profile-tagline">
         <p>Version 1.0</p>
     </div>
