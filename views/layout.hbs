@@ -18,22 +18,6 @@
         togglePassword.classList.toggle('bi-eye');
       }
       
-      const toggle = document.querySelector('.toggle-theme input[type="checkbox"]');
-
-      function toggleTheme(event) {
-        if (event.target.checked) {
-          document.body.className = 'dark-theme';
-        } else {
-          document.body.className = '';
-        }
-      }
-
-      toggle.addEventListener('change', toggleTheme);
-
-      // use axios to send to a route that records teh eference on the cookie.
-      // for example axios.post("/set-theme/?t=dark")
-      // in the backhand you recieve the route and set req.cookie
-      
     </script>
   </body>
 </html>
