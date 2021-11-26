@@ -10,17 +10,15 @@ const isNotLoggedIn = require("../middleware/isNotLoggedIn");
 
 //require model playlist
 
-router.get("/artist-confirmation", isLoggedIn, (req, res, next) => {
-  const { artist } = req.query;
-
-  Api.searchArtists(artist, { limit: 10 })
-    .then((data) => {
-      const artistsArray = data.body.artists.items;
-      res.render("artist-confirmation", { artists: artistsArray });
-    })
-    .catch((err) =>
-      console.log("The error while searching artists occurred: ", err)
-    );
+router.get("/artist-confirmation", isLoggedIn, async (req, res, next) => {
+  try{
+    const { artist } = req.query;
+    const foundArtist = await Api.searchArtists(artist, { limit: 10 })
+    const artistsArray = foundArtist.body.artists.items;
+    res.render("artist-confirmation", { artists: artistsArray });
+  }catch(err){
+    console.log("The error while searching artists occurred: ", err)
+  }
 });
 
 // Discover
@@ -47,7 +45,6 @@ router.route("/create/:id").post(isLoggedIn, async (req, res) => {
     res.redirect(
       `/playlist/swipe/?artist=${artistId}&playlist=${newPlaylist._id}`
     );
-    // console.log("updateduser", updatedUser);
   } catch (err) {
     console.log(err);
   }
