@@ -10,17 +10,15 @@ const isNotLoggedIn = require("../middleware/isNotLoggedIn");
 
 //require model playlist
 
-router.get("/artist-confirmation", isLoggedIn, (req, res, next) => {
+router.get("/artist-confirmation", isLoggedIn, async (req, res, next) => {
+  try{
     const { artist } = req.query;
-
-    Api.searchArtists(artist, { limit: 10 })
-        .then((data) => {
-            const artistsArray = data.body.artists.items;
-            res.render("artist-confirmation", { artists: artistsArray });
-        })
-        .catch((err) =>
-            console.log("The error while searching artists occurred: ", err)
-        );
+    const foundArtist = await Api.searchArtists(artist, { limit: 10 })
+    const artistsArray = foundArtist.body.artists.items;
+    res.render("artist-confirmation", { artists: artistsArray });
+  }catch(err){
+    console.log("The error while searching artists occurred: ", err)
+  }
 });
 
 // Discover
@@ -32,25 +30,24 @@ router.route("/discover").get(isLoggedIn, (req, res) => {
 });
 
 router.route("/create/:id").post(isLoggedIn, async (req, res) => {
-    try {
-        const artistId = req.params.id;
-        const newPlaylist = await Playlist.create({ name: "untitled" });
-        const userId = req.session.loggedinUser._id;
-        const updatedUser = await User.findByIdAndUpdate(
-            userId,
-            {
-                $push: { favouriteplaylists: newPlaylist._id },
-            },
-            { new: true }
-        );
+  try {
+    const artistId = req.params.id;
+    const newPlaylist = await Playlist.create({ name: "untitled" });
+    const userId = req.session.loggedinUser._id;
+    const updatedUser = await User.findByIdAndUpdate(
+      userId,
+      {
+        $push: { favouriteplaylists: newPlaylist._id },
+      },
+      { new: true }
+    );
 
-        res.redirect(
-            `/playlist/swipe/?artist=${artistId}&playlist=${newPlaylist._id}`
-        );
-        // console.log("updateduser", updatedUser);
-    } catch (err) {
-        console.log(err);
-    }
+    res.redirect(
+      `/playlist/swipe/?artist=${artistId}&playlist=${newPlaylist._id}`
+    );
+  } catch (err) {
+    console.log(err);
+  }
 });
 
 //Swipe
