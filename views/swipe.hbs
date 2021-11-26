@@ -4,18 +4,15 @@
     <div class="tune">
         {{!-- <img src="https://via.placeholder.com/322"> --}}
         <img src="{{ track.album.images.0.url }}">
-        <div class="player">
-
-        </div>
+     
+        <audio controls autoplay class="player">
+            <source src="{{preview}}" type="audio/mpeg">
+        </audio>
+        
         <h2>{{track.name}}</h2>
         <p>{{ track.artists.0.name }}</p>
         {{!-- <p>{{preview}}</p> --}}
-        <div class="audio-content">
-            <audio controls autoplay >
-                <source src="{{preview}}" type="audio/mpeg">
-            </audio>
-        </div>
-        
+
         
         <div class="swipe-buttons">
                    

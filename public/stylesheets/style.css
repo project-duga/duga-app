@@ -598,6 +598,7 @@ audio::-webkit-media-controls-panel {
     padding-bottom: 10vh;
     color: var(--text);
     margin: 0;
+    overflow: hidden;
   }
 
   p {
@@ -731,7 +732,7 @@ audio::-webkit-media-controls-panel {
     cursor: pointer;
     font-size: 50px;
     vertical-align: super;
-    opacity: 0.3;
+    opacity: 0.6;
   }
 
   form p {
@@ -761,9 +762,36 @@ audio::-webkit-media-controls-panel {
   }
 
   .splash {
-    background-image: url("");
-    bottom: 0px !important;
-    width: 100%;
+    text-align: center;
+    padding-bottom: -10vh;
+    flex-direction: column;
+  }
+
+  .splash-button {
+    border: 5px solid var(--accent-color);
+  }
+
+  .splash h2 {
+    margin-bottom: 5vh !important;
+    color: var(--accent-color);
+  }
+  .splash img {
+    height: 23vh !important;
+    bottom: 0 !important;
+    margin-bottom: 10vh;
+  }
+
+  .splash-hero img {
+    bottom: 0 !important;
+  }
+
+  .powered p {
+    color: var(--accent-color) !important;
+    margin-bottom: 0;
+  }
+
+  .tagline img {
+    height: 5vh !important;
   }
 
   /* Profile */
@@ -901,6 +929,14 @@ audio::-webkit-media-controls-panel {
     margin-top: -20px;
   }
 
+  .player {
+    width: 80%;
+    margin-bottom: 2vh;
+  }
+  audio::-webkit-media-controls-panel {
+    background-color: var(--accent-color) !important;
+  }
+
   .swipe-buttons i {
     font-size: 60px;
     margin-left: 20px;
@@ -910,6 +946,11 @@ audio::-webkit-media-controls-panel {
   .conf-art-block ul {
     text-decoration: none;
     padding-left: 0;
+    margin-bottom: 5vh;
+  }
+
+  .conf-art-block h2 {
+    margin-bottom: 5vh;
   }
 
   .conf-art-block ul li {
