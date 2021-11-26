@@ -10,9 +10,12 @@
         <h2>{{track.name}}</h2>
         <p>{{ track.artists.0.name }}</p>
         {{!-- <p>{{preview}}</p> --}}
-        <audio controls autoplay>
-            <source src="{{preview}}" type="audio/mpeg">
-        </audio>
+        <div class="audio-content">
+            <audio controls autoplay >
+                <source src="{{preview}}" type="audio/mpeg">
+            </audio>
+        </div>
+        
         
         <div class="swipe-buttons">
                    
