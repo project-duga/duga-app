@@ -13,11 +13,11 @@ Search platform for music and creating multiple playlist of music related to the
 - **login** - User can log in in theyr account. 
 - **logout** - User can logout from the app. 
 - **profile** - User can display theyr account information and edit or delete saved playlists. 
-- **editplaylist** - User can edit playlists from the profile
+- **editplaylist** - User can edit profile
 - **deleteplaylist** - User can delete playlists from the profile
-- **swipepage** - User will recieve songs and will be able to add them or not to theyr playlist. When the user adds 10 songs, a playlist will be created and stored in our profile. 
-- **playlist** - User will display a playlist stored in the profile. Playlist will have a total of 5 songs. 
-- **playlist** - User can delete songs from the playlist. 
+- **swipepage** - User will recieve songs and will be able to add them or not to theyr playlist. When the user adds 5 songs, a playlist will be created and stored in our profile. 
+- **playlist** - User will display a playlist stored in the profile. Playlist will have 5 songs. 
+
 
 
 
@@ -82,8 +82,6 @@ Search platform for music and creating multiple playlist of music related to the
 
 #### Git 
 
-The url to your repository and to your deployed project
-
 [Repository Link](https://github.com/project-duga/duga-app)
 
 #### Trello 
@@ -92,5 +90,7 @@ The url to your repository and to your deployed project
 
 #### Slides 
 
-[Our presentation]
+
+[Our Trello board](https://docs.google.com/presentation/d/1N8_HSWnzgne9_8dj1KLjoEMJ34pD1nlf-oZLv6jhugI/edit)
+
 
