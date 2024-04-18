@@ -4,12 +4,6 @@
   box-sizing: border-box;
 }
 
-/* :root {
-  --main-bg-color: #1b1e28;
-  --form-field-bg: #F5F5F7;
-  --form-text-color: #707790;
-  --accent-color: #16a7ff;
-} */
 @media (min-width: 700px) {
   :root {
     --surface: #fff;
@@ -27,13 +21,8 @@
     --bg: #18181b;
     --text: #a1a1aa;
     --form-field-bg: #f5f5f714;
-    /* --accent-color: #16a7ff; */
     --shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.3);
     --shadow-inner: inset 0 0.125rem 0.25rem 0 rgba(0, 0, 0, 0.6);
-  }
-
-  body {
-    transition: background-color 0.15s ease-in 0.4s;
   }
 
   .toggle-theme {
@@ -93,7 +82,7 @@
     z-index: 1;
   }
 
-  /* mi codigo */
+  /* my code */
 
   html {
     scroll-behavior: smooth;
@@ -102,12 +91,13 @@
   }
 
   body {
+    transition: background-color 0.15s ease-in 0.4s;
     font-family: "Poppins", sans-serif;
     font-weight: 300 !important;
     background-color: var(--surface);
     padding-left: 5vw;
-    padding-right: 5vw;
-    padding-top: 10vw;
+    padding-right: 2rem;
+    padding-top: 5vw;
     padding-bottom: 10vh;
     color: var(--text);
     margin: 0;
@@ -149,9 +139,10 @@
     border: none;
     border-radius: 16px;
     width: 100%;
-    height: 7vh;
+    padding: 0.75rem 1.5rem;
     font-size: 3.5rem;
     margin-top: 1vh;
+    cursor: pointer;
   }
 
   .goback {
@@ -181,8 +172,9 @@
     border-top: 1px solid var(--form-text-color);
     width: 100%;
     left: 0 !important;
-    height: 10vh;
+    height: 142px;
     font-size: 3rem;
+    align-content: center;
   }
 
   nav ul {
@@ -191,7 +183,8 @@
     padding-right: 3vw;
     font-size: 80px;
     line-height: 0;
-    margin-top: 3vh;
+    display: flex;
+    justify-content: space-between;
   }
 
   nav ul li {
@@ -205,7 +198,7 @@
     padding-right: 25px;
   }
 
-  /* Formularios */
+  /* Forms */
 
   .form-fields {
     background-color: var(--form-field-bg);
@@ -219,7 +212,6 @@
   ::placeholder {
     color: var(--form-text-color);
     font-size: 3rem;
-    padding-left: 3vw;
   }
 
   input[type="email"] {
@@ -252,7 +244,7 @@
     margin: 0;
   }
 
-  /* Formularios */
+  /* Forms */
 
   .tagline {
     position: fixed;
@@ -418,8 +410,14 @@
 
   .centered-block {
     text-align: center;
-    margin-bottom: 4vh;
+    margin-bottom: 110px;
     margin-top: 1vh;
+    max-width: 720px;
+    margin-inline: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 
   .centered-block img {
@@ -486,7 +484,6 @@
 
   .art-list-item button {
     background-color: var(--surface);
-    /* border: 2px solid var(--accent-color); */
     color: var(--accent-color);
     height: 4vh;
   }
