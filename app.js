@@ -10,8 +10,6 @@ var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 var playlistRouter = require("./routes/playlist");
 
-const favicon = require("serve-favicon");
-
 // Register partials
 hbs.registerPartials(path.join(__dirname, "/views/partials"));
 //require the pakage spotify-web-api-node
