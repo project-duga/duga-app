@@ -1,25 +1,28 @@
-<div class="centered-block">
-       <h2>Create New Account</h2>
-
-       <form autocomplete="off" action="/users/signup" method="post">
-
-       <label for="name"></label>
-       <input autocomplete="false" required type="text" name="name" placeholder="Username" class="form-fields"/>
-
-       <label for="email"></label>
-       <input autocomplete="false" required type="email" name="email" placeholder="Email Address" class="form-fields"/>
-
-       <p>
-       <label for="password"></label>
-       <input autocomplete="false" required type="password" name="password" autocomplete="current-password" placeholder="Password" class="form-fields" id="id_password">
-       <i class="bi bi-eye-slash" id="togglePassword" onclick="showPass()"></i>
-        </p>
-       <div class="centered-block">
-              <button type="submit">Sign Up</button>
-       </div>
-
-       </form>
-</div>
-<div class="tagline">
-       <p>Already have an account? <a href="/users/login">Login</a></p>
+<div class="container container--full">
+  <div class="wrapper">
+    <div class="illustration-wrapper">
+      <img src="/images/illustrations/new-account.png" alt="" />
+    </div>
+    <h2>Create New Account</h2>
+    <form autocomplete="off" action="/users/login" method="post">
+      <div class="input-wrapper">
+        <label for="name"></label>
+        <input required type="text" name="name" placeholder="Username" />
+      </div>
+      <div class="input-wrapper">
+        <label for="email"></label>
+        <input required type="email" name="email" placeholder="Email" />
+      </div>
+      <div class="input-password">
+        <label for="password"></label>
+        <input required type="password" name="password" placeholder="Password" id="id_password" />
+        <i class="bi bi-eye-slash" id="togglePassword" onclick="showPass()"></i>
+      </div>
+      <button type="submit">Sign Up</button>
+      <p class="tagline">
+        Already have an account?
+        <a href="/users/login">Login</a>
+      </p>
+    </form>
+  </div>
 </div>

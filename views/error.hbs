@@ -1,12 +1,11 @@
-<div class="centered-block">
-        <div class="error-smiley">
-            <h1><i class="bi bi-emoji-frown"></i></h1>
-        </div>
-        <h1>{{message}}</h1>
-        <p>We’d probably get results if you try again.</p>
-        <form action="/playlist/discover/" method="post">
-        <label for="artist"></label>
-        <button type="submit">Search Again</button>
-        </form>
-</div>
 {{> navbar}}
+<div class="container">
+    <div class="wrapper">
+        <div class="illustration-wrapper">
+            <img src="/images/illustrations/error.png" alt="" />
+        </div>
+        <h2>{{message}}</h2>
+        <p class="tagline">We’d probably get results if you try again.</p>
+        <a class="btn-wrapper" href="/playlist/discover/"><button type="submit">Search Again</button></a>
+    </div>
+</div>

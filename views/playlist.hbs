@@ -1,16 +1,23 @@
-<div class="goback">
-    <p><a href="/users/profile"><i class="bi bi-arrow-left-short"></i></a></p>
-</div>
-<div class="playlists-profile edit-profile-block">
-    <h4>{{playlistName}}</h4>
-     {{#each playlistTrackInfo}}
-    <div class="playlist-item songs-list">
-        <img src={{image}}>
-        <p>{{name}}<br>
-        {{artist}}</p>
-        {{!-- <i class="bi bi-play-fill" id="togglePlay"></i> --}}
-        {{!-- <i class="bi bi-x" id="toggleDelete"></i></span></p> --}}
-    </div>
-    {{/each}}
-</div>
 {{> navbar}}
+<a class="close" href="/users/profile">
+    <img src="/images/svg/close.svg" alt="close" />
+</a>
+<div class="container container--artist-list">
+    <div class="wrapper wrapper--playlist">
+        <div class="playlists-profile ">
+            <h1 class="main-title">{{playlistName}}</h1>
+            <div class="playlist-wrapper">
+                {{#each playlistTrackInfo}}
+                <div class="playlist-item songs-list track">
+                    <img src={{image}}>
+                    <div class="playlist-track__wrapper">
+                        <p class="playlist-song">{{name}}
+                        <p>
+                        <p class="playlist-artist">{{artist}}</p>
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+    </div>
+</div>

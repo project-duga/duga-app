@@ -1,31 +1,25 @@
-<div class="goback">
-    <p><a href="/users/profile"><i class="bi bi-arrow-left-short"></i></a></p>
-</div>
-<div class="centered-block edit-profile-block">
-    <div>
-        <h2>Edit profile</h2>
+{{> navbar}}
+<div class="container">
+  <div class="wrapper">
+    <a class="close" href="/users/profile">
+      <img src="/images/svg/close.svg" alt="close" />
+    </a>
+    <div class="illustration-wrapper">
+      <img src="/images/illustrations/edit.png" alt="" />
     </div>
-    <div class="edit-profile-header"> 
-        <div class="edit-profile-picture">
-            <img src="{{avatarUrl}}">
-            <form action="/users/signup" method="post">
-            <button class="pic-button" type="submit">Update picture</button>
-        </form>
-        </div>
+    <div class="text-wrapper">
+      <h2 class="title">Edit profile</h2>
+
     </div>
     <form autocomplete="off" action="/users/edit-profile" method="post">
-       <label for="name"></label>
-       <input autocomplete="false" required type="text" name="name" value="{{currentName}}" class="form-fields"/>
-       <button type="submit">Change Name</button>
-       <p class="edit-profile ">This can be your own name or a nickname. Is how you will appear on Duga.</p>
+      <label for="name"></label>
+      <input autocomplete="false" required type="text" name="name" value="{{currentName}}" class="form-fields" />
+      <button type="submit">Change Name</button>
+      <p class="tagline">This can be your own name or a nickname.</p>
     </form>
-    <div class="profile-tagline">
-        <p>Version 1.0</p>
-    </div>
+    <a class="logout" href="/users/logout/">
+      Logout
+      <img src="/images/svg/logout.svg" alt="close" />
+    </a>
+  </div>
 </div>
-<nav>
-    <ul>
-        <li class="nav-home"><a href="/playlist/discover"><i class="bi bi-house"></i></a></li>
-        <li class="nav-profile"><a href="/users/profile"><i class="bi bi-person-fill"></i></a></li>
-    </ul>
-</nav>

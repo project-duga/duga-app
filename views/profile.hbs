@@ -1,36 +1,32 @@
-<h1>Profile</h1>
-<div class="profile-header"> 
-    <div class="profile-picture">
-        <img src="{{avatarUrl}}">
-    </div> 
+{{> navbar}}
+<div class="container container--artist-list"">
+  <div class=" wrapper">
+  <div class="profile-box">
     <div class="user-info">
-        <h3>{{foundUser.name}}</h3>
-        <p>{{foundUser.email}}</p>
-        <p><a href="/users/edit-profile/">Edit</a></p>
-        <p><a href="/users/logout/">Logout</a></p>
+      <h2>{{foundUser.name}}</h2>
+      <p>{{foundUser.email}}</p>
     </div>
-</div>
-<div class="playlists">
-    <div class="playlist-title">
-        <h4>Playlists</h4>
-    </div>
-    {{#each foundUser.favouriteplaylists}}
-    <div class="playlist-item playlists-list">
-        <a href="/playlist/playlist/?name={{name}}&playlistId={{_id}}"><p>{{name}}</p></a>
+    <a class="edit-profile" href="/users/edit-profile/">
+      <div class="edit-icon "></div>
+    </a>
+  </div>
+  <div class="playlists">
+    <h2 class="main-title">Playlists</h2>
+    <div class="playlist-list__wrapper">
+      {{#each foundUser.favouriteplaylists}}
+      <div class="playlist-item ">
+        <a href="/playlist/playlist/?name={{name}}&playlistId={{_id}}">
+          <p>{{name}}</p>
+        </a>
         <form action="/users/profile/{{_id}}/" method="POST">
-            <button type="submit"><span><i class="bi bi-trash" id="toggleDelete"></i></span></button>
+          <button type="submit">
+            <span class="trash-icon">
+            </span>
+          </button>
         </form>
+      </div>
+      {{/each}}
     </div>
-    {{/each}}
+  </div>
 </div>
-<nav>
-    <ul>
-        <li class="nav-home"><a href="/playlist/discover"><i class="bi bi-disc"></i></a></li>
-        <li class="nav-profile"><a href="/users/profile"><i class="bi bi-person-fill"></i></a></li>
-    </ul>
-</nav>
-
-
-
-
-
+</div>

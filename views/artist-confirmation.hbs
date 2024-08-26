@@ -1,23 +1,27 @@
-<div class="centered-block conf-art-block">
-    <h2>Confirm Artist</h2>
-    <div>
-        <ul>
-        {{#each artists}}
-            <li class="art-list-item">
-                <form action="/playlist/create/{{this.id}}" method="POST">
-                <button>{{this.name}}</button>
-                </form>
-            </li>
-        {{/each}}
-        </ul>
-    </div>
-
-    <h2>Not what you are looking for?<br>Try again</h2>
-    <form action="/playlist/artist-confirmation/" method="get">
-                <label for="artist"></label>
-                <input required type="text" name="artist" placeholder="Search again" class="form-fields"/>
-                <br>
-                <button type="submit">Search</button>
-    </form>
-</div>
 {{> navbar}}
+<div class="container container--artist-list">
+    <div class="wrapper wrapper--artist-list">
+        <h2>Confirm Artist</h2>
+        <div class="artists-wrapper">
+            <ul class="artists-list">
+                {{#each artists}}
+                <li class="art-list-item">
+                    <form action="/playlist/create/{{this.id}}" method="POST">
+                        <button>{{this.name}}</button>
+                    </form>
+                </li>
+                {{/each}}
+            </ul>
+        </div>
+        <div class="text-wrapper">
+            <h2 class="title">Don't you like?</h2>
+            <p class="subtitle">Try again</p>
+        </div>
+        <form autocomplete="off" action="/playlist/artist-confirmation/" method="get">
+            <label for="artist"></label>
+            <input autocomplete="false" required type="text" name="artist" placeholder="Choose an artist"
+                class="form-fields" />
+            <button type="submit">Search</button>
+        </form>
+    </div>
+</div>

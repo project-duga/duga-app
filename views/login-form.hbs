@@ -1,17 +1,28 @@
-<div class="centered-block">
-        <h2>Welcome Back</h2>
-        <form autocomplete="off" action="/users/login" method="post">
-        <label for="email"></label>
-        <input autocomplete="false" required type="email" name="email" placeholder="Email Address" class="form-fields">
-      
-                <label for="password"></label>
-                <input required type="password" name="password" autocomplete="current-password" placeholder="Password" class="form-fields" id="id_password">
-                <i class="bi bi-eye-slash" id="togglePassword" onclick="showPass()"></i>
-      <div class="centered-block">
-        <button type="submit">Login</button>
+<div class="container container--full">
+  <div class="wrapper">
+    <div class="illustration-wrapper">
+      <img src="/images/illustrations/welcome.png" alt="" />
+    </div>
+    <h2>Welcome back</h2>
+    <form autocomplete="off" action="/users/login" method="post">
+      <label for="email"></label>
+      <input required type="email" name="email" placeholder="Email" />
+      <div class="input-password">
+        <label for="password"></label>
+        <input
+          required
+          type="password"
+          name="password"
+          placeholder="Password"
+          id="id_password"
+        />
+        <i class="bi bi-eye-slash" id="togglePassword" onclick="showPass()"></i>
       </div>
-        </form>
-</div>
-<div class="tagline">
-        <p>Don’t have an account? <a href="/users/signup">Sign Up</a></p>
+      <button type="submit">Login</button>
+      <p class="tagline">
+        Don’t have an account?
+        <a href="/users/signup">Sign Up</a>
+      </p>
+    </form>
+  </div>
 </div>

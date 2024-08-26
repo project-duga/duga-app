@@ -1,17 +1,19 @@
-<div class="centered-block">
-        <div class="discover-hero">
-                <img src="/images/create.png" />
-        </div>
-        <h2>Awesome!</h2>
-        <p>Now you only need to pick a name for this cool as fuck playlist we made together</p>
-       <form action="/playlist/create-list" method="post">
-                <label for="artist"></label>
-                <input required type="text" name="namePlaylist" placeholder="Playlist Name"  class="form-fields"/>
-                <input type="hidden" name="playlistId" value="{{playlistId}}">
-                <br>
-                <button type="submit">Create</button>
-        </form>
-</div>
 {{> navbar}}
+<div class="container">
+  <div class="wrapper">
+    <div class="illustration-wrapper">
+      <img src="/images/illustrations/create-list.png" alt="" />
+    </div>
+    <div class="text-wrapper">
+      <h2 class="title">Awesome!</h2>
+      <p class="tagline">Now name this amazing playlist</p>
+    </div>
+    <form action="/playlist/create-list" method="post">
+      <label for="artist"></label>
+      <input required type="text" name="namePlaylist" placeholder="Playlist Name" class="form-fields" />
+      <input type="hidden" name="playlistId" value="{{playlistId}}">
 
-
+      <button type="submit">Create</button>
+    </form>
+  </div>
+</div>

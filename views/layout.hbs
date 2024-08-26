@@ -1,23 +1,26 @@
-<!DOCTYPE html>
 <html>
-  <head>
-    <title>{{title}}</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
-  </head>
-  <body>
-    {{{body}}}
-    <script>
-      function showPass(){
-        const togglePassword = document.querySelector('#togglePassword');
-        const password = document.querySelector('#id_password');
-        // toggle the type attribute
-        const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
-        password.setAttribute('type', type);
-        // toggle the eye / eye slash icon
-        togglePassword.classList.toggle('bi-eye');
-      }
-      
-    </script>
-  </body>
+
+<head>
+  <title>{{title}}</title>
+  <meta name="viewport" content="width=device-width" />
+  <link rel="stylesheet" href="/stylesheets/style.css" />
+  <link rel="icon" href="/images/favicon.ico" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
+</head>
+
+<body>
+  {{{body}}}
+  <script>
+    function showPass() {
+      const togglePassword =
+        document.querySelector('#togglePassword'); const password =
+          document.querySelector('#id_password'); // toggle the type attribute const
+      type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+      password.setAttribute('type', type); // toggle the eye / eye slash icon
+      togglePassword.classList.toggle('bi-eye');
+    }
+
+  </script>
+</body>
+
 </html>

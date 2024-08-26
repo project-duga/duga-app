@@ -1,32 +1,27 @@
-<div class="centered-block">
-    <h2>Now playing</h2>
-
-    <div class="tune">
-        {{!-- <img src="https://via.placeholder.com/322"> --}}
-        <img src="{{ track.album.images.0.url }}">
-     
-        <audio controls autoplay class="player">
-            <source src="{{preview}}" type="audio/mpeg">
-        </audio>
-        
-        <h2>{{track.name}}</h2>
-        <p>{{ track.artists.0.name }}</p>
-        {{!-- <p>{{preview}}</p> --}}
-        
-        <div class="swipe-buttons">
-                   
-        <a href="/playlist/swipe/?artist={{artist}}&playlist={{playlist}}&operation=NO&track={{track.id}}"><button class="yesno"><i class="bi bi-x-circle"></i></button></a>
-                   
-        <a href="/playlist/swipe/?artist={{artist}}&playlist={{playlist}}&operation=YES&track={{track.id}}"><button class="yesno"><i class="bi bi-check-circle"></i></button></a>
-
-            {{!-- <a href=""><i class="bi bi-x-circle"></i></a>
-            <a href=""><i class="bi bi-check-circle"></i></a> --}}
-        </div>
-    </div>
-</div>
 {{> navbar}}
+<div class="container">
+  <div class="wrapper">
+    <div class="album-wrapper">
+      <div class="artwork-wrapper">
+        <img class="artwork" src="{{ track.album.images.0.url }}" alt="" />
+      </div>
+    </div>
 
-
-
-
-
+    <div class="text-wrapper">
+      <h2 class="title">{{track.name}}</h2>
+      <p class="subtitle">{{ track.artists.0.name }}</p>
+    </div>
+    <audio controls autoplay class="player"
+      controlslist="nofullscreen nodownload noremoteplayback noplaybackrate foobar">
+      <source src="{{preview}}" type="audio/mpeg" />
+    </audio>
+    <div class="swipper-wrapper">
+      <div class="buttons-wrapper">
+        <a aria-label="cancel" class="btn-cancel"
+          href="/playlist/swipe/?artist={{artist}}&playlist={{playlist}}&operation=NO&track={{track.id}}"></a>
+        <a aria-label="accept" class="btn-accept"
+          href="/playlist/swipe/?artist={{artist}}&playlist={{playlist}}&operation=YES&track={{track.id}}"></a>
+      </div>
+    </div>
+  </div>
+</div>
