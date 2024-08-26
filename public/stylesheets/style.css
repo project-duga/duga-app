@@ -611,6 +611,7 @@ nav a::after {
 .player {
   width: 100%;
   padding-inline: 1rem;
+  padding-block-start: 1rem;
 }
 
 audio::-webkit-media-controls-panel {
