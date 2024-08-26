@@ -98,11 +98,11 @@ router.get("/logout", (req, res) => {
 router.route("/profile").get(isLoggedIn, async (req, res) => {
   try {
     const id = req.session.loggedinUser._id;
-    const {avatarUrl} = req.session.loggedinUser
+    const { avatarUrl } = req.session.loggedinUser;
     const foundUser = await User.findById(id).populate("favouriteplaylists");
     res.render("profile", {
       foundUser,
-      avatarUrl
+      avatarUrl,
     });
   } catch (err) {
     console.log(err);
@@ -120,30 +120,29 @@ router.post("/profile/:id", async (req, res) => {
 });
 
 //Edit Profile
-router.route("/edit-profile")
-.get(isLoggedIn, async (req, res) => {
-  try{
-    const { name, email, avatarUrl } = req.session.loggedinUser;
-    const userId = req.session.loggedinUser._id;
-    const userIdDb = await User.findById(userId);
-    const currentName = userIdDb.name
+router
+  .route("/edit-profile")
+  .get(isLoggedIn, async (req, res) => {
+    try {
+      const { name, email, avatarUrl } = req.session.loggedinUser;
+      const userId = req.session.loggedinUser._id;
+      const userIdDb = await User.findById(userId);
+      const currentName = userIdDb.name;
 
-    res.render("edit-profile", { name, email, avatarUrl, currentName });
-  } catch (error){
-    console.log(error)
-  }
-})
-.post(isLoggedIn, async (req, res) => {
-  try{
-    const userId = req.session.loggedinUser._id;
-    const newName = req.body.name;
-    await User.findByIdAndUpdate(userId, {name: newName}, { new:true })
-    res.redirect("profile");
-
-  } catch (error){
-    console.log(error)
-  }
-  
-});
+      res.render("edit-profile", { name, email, avatarUrl, currentName });
+    } catch (error) {
+      console.log(error);
+    }
+  })
+  .post(isLoggedIn, async (req, res) => {
+    try {
+      const userId = req.session.loggedinUser._id;
+      const newName = req.body.name;
+      await User.findByIdAndUpdate(userId, { name: newName }, { new: true });
+      res.redirect("profile");
+    } catch (error) {
+      console.log(error);
+    }
+  });
 
 module.exports = router;

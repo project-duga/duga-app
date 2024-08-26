@@ -509,7 +509,6 @@ nav a::after {
   height: calc(100dvh - 72px);
   padding-inline: 1rem;
   overflow-y: hidden;
-  padding-block-end: 3rem;
 }
 
 .container--full {
@@ -617,6 +616,7 @@ nav a::after {
   width: 100%;
   padding-inline: 1rem;
   padding-block-start: 1rem;
+  margin-block-end: 1rem;
 }
 
 audio::-webkit-media-controls-panel {
