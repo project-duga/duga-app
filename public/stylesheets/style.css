@@ -115,7 +115,8 @@ input {
   background-color: white;
   border: none;
   border-radius: 0.5rem;
-  width: 100%;
+  margin-inline: 2px;
+  width: calc(100% - 4px);
   padding: 12px;
   font-size: 1.5rem;
   text-align: center;
@@ -124,6 +125,10 @@ input {
   font-size: 1.25rem;
   font-weight: 400;
   color: var(--text);
+}
+
+input:focus-visible {
+  outline: 2px solid var(--accent-color);
 }
 
 ::placeholder {
