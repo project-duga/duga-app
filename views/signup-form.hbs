@@ -4,7 +4,7 @@
       <img src="/images/illustrations/new-account.png" alt="" />
     </div>
     <h2>Create New Account</h2>
-    <form autocomplete="off" action="/users/login" method="post">
+    <form autocomplete="off" action="/users/signup" method="post">
       <div class="input-wrapper">
         <label for="name"></label>
         <input required type="text" name="name" placeholder="Username" />
@@ -15,7 +15,15 @@
       </div>
       <div class="input-password">
         <label for="password"></label>
-        <input required type="password" name="password" placeholder="Password" id="id_password" />
+        <input
+          autocomplete="false"
+          required
+          type="password"
+          name="password"
+          autocomplete="current-password"
+          placeholder="Password"
+          id="id_password"
+        />
         <i class="bi bi-eye-slash" id="togglePassword" onclick="showPass()"></i>
       </div>
       <button type="submit">Sign Up</button>
